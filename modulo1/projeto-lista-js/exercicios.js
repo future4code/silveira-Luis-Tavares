@@ -112,18 +112,34 @@ function checaIgualdadeDesconsiderandoCase(string1, string2) {
 
 // EXERCÍCIO 13
 function checaRenovacaoRG() {
-  // implemente sua lógica aqui
+  const anoAtual = +prompt("Digite o ano atual:");
+  const anoNasc = +prompt("Digite o ano de nascimento:");
+  const anoEmissao = +prompt("Digite o ano de emissão da carteira de identidade:");
+  const idade = anoAtual - anoNasc;
+  const idadeCarteira = anoAtual - anoEmissao;
 
+  const menorQue20 = idade <= 20 && idadeCarteira >= 5;
+  // console.log(idade20);
+
+  const entre20e50 = idade > 20 && idade <= 50 && idadeCarteira >= 10;
+  // console.log(idade20e50);
+
+  const maiorQue50 = idade > 50 && idadeCarteira >= 15;
+  // console.log(idade50);
+
+  console.log(menorQue20 || entre20e50 || maiorQue50);
 }
 
 // EXERCÍCIO 14
 function checaAnoBissexto(ano) {
-  // implemente sua lógica aqui
-
+  return ano % 400 == 0 || ano % 4 == 0 && ano % 100 !== 0;
 }
 
 // EXERCÍCIO 15
 function checaValidadeInscricaoLabenu() {
-  // implemente sua lógica aqui
+  const maisQue18 = prompt("Você tem mais de 18 anos?").toLowerCase();
+  const formacao = prompt("Você possui ensino médio completo?").toLowerCase();
+  const disponibilidade = prompt("Você possui disponibilidade exclusiva durante os horários do curso?").toLowerCase(); 
 
+  console.log(maisQue18 == "sim" && formacao == "sim" && disponibilidade == "sim");
 }
