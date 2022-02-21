@@ -51,7 +51,7 @@ function listarObjetos(objeto) {
 console.log(listarObjetos(pessoaComProfissao));
 console.log(listarObjetos(pessoaComProfissao2));
 
-////////////////////////////////////////////////////// 2 //////////////////////////////////////////////////////////
+////////////////////////////////////////////////////// 3 //////////////////////////////////////////////////////////
 let carrinho = [];
 
 const fruta1 = {nome: "Banana", disponibilidade: true};
@@ -64,3 +64,35 @@ addCarrinho(fruta2);
 addCarrinho(fruta3);
 
 console.log(carrinho);
+
+////////////////////////////////////////////////////// DESAFIOS //////////////////////////////////////////////////////////
+// 1: 
+
+function dadosUsuario(nome, idade, prof) {
+   let result;
+   result = {nome: nome, idade: idade, profissao: prof};
+   console.log(result);
+   console.log(typeof result);
+}
+
+dadosUsuario("Luis", 21, "Programador");
+
+// 2: 
+const filme1 = {nome: "Django Livre", ano: 2012};
+const filme2 = {nome: "Bastardos Inglórios", ano: 2009};
+
+function filmes(filme1, filme2) {
+   console.log(`O primeiro filme foi lançado antes do segundo? ${filme1.ano < filme2.ano}`);
+   console.log(`O primeiro filme foi lançado no mesmo ano do segundo? ${filme1.ano == filme2.ano}`);
+}
+
+filmes(filme1, filme2);
+
+// 3: 
+const controleEstoque = (fruta) => {return fruta.disponibilidade = !fruta.disponibilidade;}
+
+controleEstoque(fruta1);
+controleEstoque(fruta3);
+console.log(fruta1);
+console.log(fruta2);
+console.log(fruta3);
