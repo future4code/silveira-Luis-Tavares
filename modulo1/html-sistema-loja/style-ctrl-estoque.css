@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.titulo {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.botoes {
+    padding: 5px;
+    margin: 5px;
+    background-color: crimson;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.trocar-paginas {
+    text-align: center;
+}
+
+.subtitulo {
+    text-align: center;
+}
+
+table {
+    padding-top: 30px;
+}
+
+.header {
+    background-color: grey;
+    color: white;
+    font-weight: lighter;
+    border-radius: 5px;
+    padding: 3.5px;
+}
+
+.img-produto {
+    width: 200px
+}
+
+/* .linha {
+    background-color: azure;
+} */
+
+.table-data {
+    text-align: center;
+    padding-top: 15px;
+    padding-right: 8vw;
+    padding-left: 8vw;
+    text-transform: uppercase;
+    font-weight: bold;
+}

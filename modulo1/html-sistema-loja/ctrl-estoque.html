@@ -4,65 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style-ctrl-estoque.css">
     <title>Controle de Estoque</title>
 </head>
 <body>
     <div>
-        <p>Luis's Apple Store</p>
-    </div>
-    
-    <div>
-        <a href="index.html">Página Inicial</a>
-        <a href="ctrl-estoque.html">Controle de Estoque</a>
-        <a href="add-produto.html">Adicionar Produto</a>
-        <a href="funcionarios.html">Funcionários</a>
+        <h1 class="titulo"><em>Melo's PC Game Store</em></h1>
     </div>
 
-    <h2>Controle de Estoque</h2>
+    <div class="trocar-paginas">
+        <span class="background-botoes"><a href="index.html" class="botoes">Página Inicial</a></span>
+        <span class="background-botoes"><a href="ctrl-estoque.html" class="botoes">Controle de Estoque</a></span>
+        <span class="background-botoes"><a href="funcionarios.html" class="botoes">Funcionários</a></span>
+        <span class="background-botoes"><a href="add-produto.html" class="botoes">Adicionar Produto</a></span>
+    </div>
+
+    <h2 class="subtitulo">Controle de Estoque</h2>
 
     <table>
-        <tr>
-            <th>Foto</th>
-            <th>Descrição</th>
-            <th>Preço (R$)</th>
-            <th>Quantidade disponível</th>
+        <tr class="linha">
+            <th class="header">Foto</th>
+            <th class="header">Descrição</th>
+            <th class="header">Preço (R$)</th>
+            <th class="header">Quantidade disponível</th>
         </tr>
 
-        <tr>
-            <td><img src="img/iphonexr.jfif" alt="Iphone XR"/></td>
-            <td>Iphone XR 128GB</td>
-            <td> 3.339,00 </td>
-            <td> 100 </td>
+        <tr class="linha">
+            <td class="table-data"><img src="./img/csgo.jpg" alt="CS:GO" class="img-produto"></td>
+            <td class="table-data">CS:GO</td>
+            <td class="table-data">Free</td>
+            <td class="table-data">Ilimitado</td>
         </tr>
 
-        <tr>
-            <td><img src="img/iphone-13-pink-select-2021.jfif" alt="Iphone 13"/></td>
-            <td>Iphone 13 128GB</td>
-            <td>7.599,00</td>
-            <td>75</td>
+        <tr class="linha">
+            <td class="table-data"><img src="./img/elden-ring.jpg" alt="Elen Ring" class="img-produto"/></td>
+            <td class="table-data">Elden Ring</td>
+            <td class="table-data">249,90</td>
+            <td class="table-data">75</td>
         </tr>
 
-        <tr>
-            <td><img src="img/macbook.jpg" alt="Macbook Air M1 256gb"/></td>
-            <td>Macbook Air M1 256GB</td>
-            <td>7.699,00</td>
-            <td>18</td>
+        <tr class="linha">
+            <td class="table-data"><img src="./img/hunt.jpg" alt="Hunt Showdown" class="img-produto"></td>
+            <td class="table-data">Hunt Showdown</td>
+            <td class="table-data">89,00</td>
+            <td class="table-data">18</td>
         </tr>
 
-        <tr>
-            <td><img src="img/airpods.jpg" alt="AirPods terceira geração"/></td>
-            <td>Airpods 3° geração</td>
-            <td>1.334,00</td>
-            <td>150</td>
+        <tr class="linha">
+            <td class="table-data"><img src="./img/stardewvalley.png" alt="Stardew Valley" class="img-produto"></td>
+            <td class="table-data">Stardew Valley</td>
+            <td class="table-data">24,90</td>
+            <td class="table-data">150</td>
         </tr>
-        
-        <!-- Crie mais uma linha desta tabela abaixo \/ -->
 
-        <tr>
-            <td><img src="img/mouse.jpg" alt="Apple Magic Mouse"></td>
-            <td>Apple Magic Mouse</td>
-            <td>899,00</td>
-            <td>15</td>
+        <tr class="linha">
+            <td class="table-data"><img src="./img/hollow-knigth.jpg" alt="Hollow Knigth" class="img-produto"></td>
+            <td class="table-data">Hollow Knigth</td>
+            <td class="table-data">27,99</td>
+            <td class="table-data">15</td>
         </tr>
 
     </table>
