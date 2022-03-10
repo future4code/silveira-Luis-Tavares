@@ -94,9 +94,18 @@ div:last-child {
     text-align: center;
 }
 
+/* #tabela {
+    display: block;
+    text-align: center;
+} */
+
 table {
     width: 60%;
     margin: auto;
+}
+
+td {
+    text-align: center;
 }
 
 td button {
