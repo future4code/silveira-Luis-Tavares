@@ -107,6 +107,14 @@ td button {
     color: black;
 }
 
+td button:hover {
+    background-color: rgb(110, 110, 19);
+}
+
+td button:active {
+    color: white;
+}
+
 td img {
     width: 60px;
 }
