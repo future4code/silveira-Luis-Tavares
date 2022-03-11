@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.titulo {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.subtitulo {
+    text-align: center;
+}
+
+.gif {
+    text-align: center;
+}
+
+.botoes {
+    /* display: block; */
+    padding: 5px;
+    margin: 5px;
+    background-color: crimson;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.background-botoes {
+    display: block;
+    margin: 18px;
+}
+
+.trocar-paginas {
+    text-align: center;
+}
+
+.redes-sociais {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.icones-redes-sociais {
+    padding: 5px;
+    width: 30px;
+}
