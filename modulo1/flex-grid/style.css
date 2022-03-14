@@ -1,0 +1,153 @@
+/*
+*
+* *
+* * * ESTILOS GERAIS
+* *
+*
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*
+*
+* *
+* * * ESTILOS HEADER
+* *
+*
+*/
+
+header {
+    background-color: mediumvioletred;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 25px;
+}
+
+
+
+.logo h1 {
+    margin-left: 30px;
+}
+
+header button {
+    padding: 3px 8px;
+}
+
+/*
+*
+* *
+* * * ESTILOS MENU
+* *
+*
+*/
+
+main {
+    display: flex;
+}
+
+.menu img {
+    width: 25px;
+}
+
+.menu {
+    background-color: #f2d0e0;
+    width: 25%;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.opcoes-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.opcoes-menu p {
+    position: absolute;
+    left: 5%;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.opcoes-menu:hover {
+    background-color: #c4adb8;
+    cursor: pointer;
+}
+
+/*
+*
+* *
+* * * ESTILOS CATALOGO
+* *
+*
+*/
+
+.catalogo {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
+    padding: 20px;
+}
+
+.produtos {
+    box-shadow: 2px 2px 5px darkgray;
+    width: 350px;
+}
+
+.produtos:hover {
+    background-color: darkgray;
+    cursor: pointer;
+}
+
+.produtos img {
+    width: 100%;
+}
+
+.texto-produtos p {
+    text-align: center;
+    padding: 8px;
+    font-size: 18px;
+}
+
+.texto-produtos p:first-child {
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+/*
+*
+* *
+* * * ESTILOS CATALOGO
+* *
+*
+*/
+
+footer {
+    background-color: mediumvioletred;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer p {
+    font-size: 20px;
+}
