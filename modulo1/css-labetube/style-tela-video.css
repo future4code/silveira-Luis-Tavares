@@ -1,0 +1,119 @@
+/*
+*
+* *
+* * * ESTILOS GERAIS
+* *
+*
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*
+*
+* *
+* * * ESTILOS HEADER
+* *
+*
+*/
+
+header {
+    background-color: rgb(160, 105, 2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 75px;
+}
+
+h1 {
+    margin-left: 10px;
+}
+
+header > input {
+    width: 100px;
+    margin-right: 50px;
+    padding: 5px;
+}
+
+/*
+*
+* *
+* * * ESTILOS MAIN
+* *
+*
+*/
+
+main {
+    background-color: rgb(228, 233, 240);
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-style: italic;
+    text-align: center;
+    margin: 10px;
+}
+
+.card-video {
+    background-color: rgb(218, 224, 233);
+    border: 1px solid black;
+    box-shadow: 1px 1px 5px grey;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.card-video video {
+    width: 98%;
+    border-radius: 3px;
+    margin: 0px 150px 42px 150px;
+}
+
+main button {
+    background-color: rgb(218, 224, 233);
+    margin-top: 50px;
+    padding: 8px 25px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+main button:hover {
+    cursor: pointer;
+    background-color: black;
+    opacity: 50%;
+    color: white;
+}
+
+/*
+*
+* *
+* * * ESTILOS FOOTER
+* *
+*
+*/
+
+footer {
+    background-color: rgb(5, 63, 60);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+footer > p {
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
