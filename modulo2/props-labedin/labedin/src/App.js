@@ -5,6 +5,8 @@ import CardGrande from './components/CardGrande/CardGrande';
 import ImagemButton from './components/ImagemButton/ImagemButton';
 import CardPequeno from "./components/CardPequeno/CardPequeno";
 import minhaFoto from "./images/minha-foto.jpeg";
+import iconEmail from "./images/email-icon.png"
+import iconAdress from "./images/adress-icon.png"
 import logoTrabalho from "./images/work-logo.png"
 
 function App() {
@@ -26,13 +28,13 @@ function App() {
 
       <div className="page-section-container">
         <CardPequeno 
-          imagem="https://cdn-icons.flaticon.com/png/512/3178/premium/3178158.png?token=exp=1647975201~hmac=05a458370265c665628851a68ac9e45e"
+          imagem={ iconEmail }
           info="E-mail:"
           valorInfo="luis_melotavares@hotmail.com"
         />
 
         <CardPequeno 
-          imagem="https://cdn-icons.flaticon.com/png/512/5521/premium/5521776.png?token=exp=1647975365~hmac=2395952976af2f2e2cb9bf93494c18c8"
+          imagem={ iconAdress }
           info="Endereço:"
           valorInfo="Rua da Glória, 210 - Glorinha, Rio Grande do Sul, Brasil."
         />
