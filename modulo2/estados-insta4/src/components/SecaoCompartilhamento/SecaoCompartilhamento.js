@@ -11,20 +11,15 @@ const ContainerCompartilhar = styled.div`
 `
 
 const IconeRedeSocial = styled.img`
-    width: 25px;
+    width: 45px;
     padding: 5px 10px;
 `
-
-let msgCompartilhar = () => {
-    console.log(`Post compartilhado no ${this.nome}`)
-}
-
-export function SecaoCompartilhamento(props) {
+export function SecaoCompartilhamento() {
         return (
             <ContainerCompartilhar>
-                <IconeRedeSocial alt={  'Icone' } src={ iconeFacebook } nome="Direct" onClick={  msgCompartilhar } />
-                <IconeRedeSocial alt={  'Icone' } src={ iconeTwitter } nome="Facebook" onClick={  msgCompartilhar } />
-                <IconeRedeSocial alt={  'Icone' } src={ iconeDirect } nome="Twitter" onClick={ msgCompartilhar } />
+                { <IconeRedeSocial alt={  'Icone' } src={ iconeFacebook } /* onClick={  } */ /> }
+                { <IconeRedeSocial alt={  'Icone' } src={ iconeTwitter } /* onClick={  } */ /> }
+                { <IconeRedeSocial alt={  'Icone' } src={ iconeDirect } /* onClick={  } */ /> }
             </ContainerCompartilhar>
         )
     }
