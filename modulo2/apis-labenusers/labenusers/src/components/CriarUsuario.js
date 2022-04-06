@@ -2,9 +2,28 @@ import axios from "axios";
 import React from "react";
 import styled from "styled-components";
 
+const ContainerUsuarios = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
 const Input = styled.input`
     margin-right: 10px;
 `
+
+const ContainerBotao = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+`
+
+const TrocarTela = styled.button`
+  padding: 0 15px;
+`
+
+const header = {
+    headers: {Authorization: "luis-tavares-silveira"}
+  }
 
 export class CriarUsuario extends React.Component {
     state = {
@@ -28,7 +47,7 @@ export class CriarUsuario extends React.Component {
 
         const urlCreateUser = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users";
 
-        axios.post(urlCreateUser, body, this.props.header)
+        axios.post(urlCreateUser, body, header)
         .then(() => {
             alert("Usuário criado com sucesso!");
             this.setState({
@@ -43,12 +62,19 @@ export class CriarUsuario extends React.Component {
     render() {
 
         return (
-            <div>
-                <Input placeholder="Nome" value={this.state.inputNome} onChange={this.onChangeNome} />
-                <Input placeholder="E-mail" value={this.state.inputEmail} onChange={this.onChangeEmail} />
-                
-                <button onClick={this.createUser}>Criar Usuário</button>
-            </div>
+            <ContainerUsuarios>
+
+                <div>
+                    <Input placeholder="Nome" value={this.state.inputNome} onChange={this.onChangeNome} />
+                    <Input placeholder="E-mail" value={this.state.inputEmail} onChange={this.onChangeEmail} />
+                    <button onClick={this.createUser}>Criar Usuário</button>
+
+                    <ContainerBotao>
+                        <TrocarTela onClick={this.props.telaListaUsuarios}>Trocar Tela</TrocarTela>
+                    </ContainerBotao>
+                </div>
+
+            </ContainerUsuarios>
         );
     }
 }

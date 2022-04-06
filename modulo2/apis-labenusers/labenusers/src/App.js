@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import { CriarUsuario } from "./components/CriarUsuario/CriarUsuario";
-import { ListaUsuarios } from "./components/ListaUsuarios/ListaUsuarios";
+import { CriarUsuario } from "./components/CriarUsuario";
+import { ListaUsuarios } from "./components/ListaUsuarios";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -12,44 +12,52 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin-top: 20px;
 `
 
-const TrocarTela = styled.button`
-  padding: 0 15px;
-  margin-top: 10px;
-`
-
-const header = {
-  headers: {Authorization: "luis-tavares-silveira"}
-}
-
 export class App extends React.Component {
   state = {
-    trocarTela: true
+    telaAtual: "criarUser"
+  }
+
+  trocarTela = () => {
+    switch(this.state.telaAtual) {
+      case "criarUser":
+        return (
+          <CriarUsuario 
+          telaListaUsuarios={this.telaListaUsuarios}
+          />
+        )
+
+      case "listaUsers":
+        return (
+          <ListaUsuarios 
+          telaCriarUsuario={this.telaCriarUsuario}
+          telaEditarUsuario={this.telaEditarUsuario}
+          />
+        )
+
+      default:
+        return <div>ERRO! Página não encontrada.</div>
+    }
+  }
+
+  telaCriarUsuario = () => {
+    this.setState({telaAtual: "criarUser"});
+  }
+
+  telaListaUsuarios = () => {
+    this.setState({telaAtual: "listaUsers"});
   }
 
   render() {
 
     return (
       <MainContainer>
+
         <GlobalStyle />
 
-        {this.state.trocarTela ? 
-
-        <CriarUsuario header={header}/> :
-
-        <div>
-         <ListaUsuarios header={header}
-         />
-        </div>
-        }
-
-      <TrocarTela onClick={() => this.setState({trocarTela: !this.state.trocarTela})}>Trocar de Tela</TrocarTela>
+        {this.trocarTela()}
         
       </MainContainer>
     );
