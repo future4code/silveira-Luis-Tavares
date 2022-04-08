@@ -23,7 +23,7 @@ export class PlaylistsPage extends React.Component {
             this.setState({listOfPlaylists: response.data.result.list});
 
         } catch (error) {
-            console.log(error);
+            alert("Erro ao listar playlists!");
         }
     }
 
@@ -35,7 +35,7 @@ export class PlaylistsPage extends React.Component {
                 alert("Playlist removida!");
             }
         } catch (error) {
-            alert(error.response);
+            alert("Erro ao remover playlist.");
         }
     }
 

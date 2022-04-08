@@ -25,7 +25,7 @@ export class MainPage extends React.Component {
 
 
         } catch (error) {
-            console.log(error.response.data.message);
+            alert("Erro ao criar a playlist.")
         }
     }
 

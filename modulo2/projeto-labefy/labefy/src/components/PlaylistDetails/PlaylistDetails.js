@@ -34,7 +34,7 @@ export class PlaylistDetails extends React.Component {
             this.setState({tracks: response.data.result.tracks});
 
         } catch (error) {
-            console.log(error);
+            alert("Erro ao listar músicas.")
         }
     }
 
@@ -50,7 +50,7 @@ export class PlaylistDetails extends React.Component {
             this.getPlaylistTracks();
 
         } catch (error) {
-            console.log(error);
+            alert("Erro ao adicionar música.");
         }
     }
 
@@ -64,7 +64,7 @@ export class PlaylistDetails extends React.Component {
             }
 
         } catch (error) {
-            console.log(error);
+            alert("Erro ao remover a música.");
         }
     }
 
