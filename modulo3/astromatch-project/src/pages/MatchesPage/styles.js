@@ -13,7 +13,6 @@ export const MatchesList = styled.li`
     list-style: none;
     width: 390px;
     margin-bottom: 10px;
-    border-bottom: 1px solid grey;
 
     &:hover {
         background-color: grey;
