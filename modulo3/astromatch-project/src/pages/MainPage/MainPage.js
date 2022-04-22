@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import styled from "styled-components";
 
 import { BASE_URL, STUDENT } from "../../constants/requests";
-import { ScreenContainer, ProfileContainer } from "./styles";
+import { ProfileContainer, BlurredContainer, InfoContainer, ProfilePicture, DescriptionContainer, UserBio } from "./styles";
 import { ChoiceButtons } from "../../components/ChoiceButtons/ChoiceButtons";
-import { Header } from "../../components/Header/Header";
 
 export function MainPage(props) {
     const [profile, setProfile] = useState([]);
@@ -33,7 +31,7 @@ export function MainPage(props) {
                 choice: boolean
             }
 
-            const response = await axios.post(`${BASE_URL}/${STUDENT}/choose-person`, body);
+            await axios.post(`${BASE_URL}/${STUDENT}/choose-person`, body);
             getProfileToChoose();
 
         } catch (error) {
@@ -42,23 +40,29 @@ export function MainPage(props) {
     };
 
     return (
-        <div>
-
-            <Header
-            currentPage={props.currentPage}
-            changePage={props.changePage}
-            />
+        <>
+            {/* -------- MAIN PAGE --------- */}
 
             <ProfileContainer>
-                <img src={profile.photo} />
+                <BlurredContainer background={profile.photo} />
+                    <ProfilePicture src={profile.photo} />
 
-                <p>{profile.name}, {profile.age}</p>
-                <p>{profile.bio}</p>
+                    <DescriptionContainer>
+                        <InfoContainer>
+                            <p>{profile.name},</p>
+                            <p>{profile.age}</p>
+                        </InfoContainer>
+
+                        <UserBio>{profile.bio}</UserBio>
+                    </DescriptionContainer>
+
             </ProfileContainer>
+
+            {/* -------- MAIN PAGE --------- */}
             
             <ChoiceButtons 
             choosePerson={choosePerson}
             />
-        </div>
+        </>
     )
 }

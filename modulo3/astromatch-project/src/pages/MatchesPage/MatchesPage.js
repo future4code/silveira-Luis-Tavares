@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BASE_URL, STUDENT } from "../../constants/requests";
 
 import axios from "axios";
-import { MatchesList } from "./styles";
-import { Header } from "../../components/Header/Header";
+import { ContainerMatches, Header, MatchesList } from "./styles";
 
 export function MatchesPage(props) {
     const [matches, setMatches] = useState([]);
@@ -23,13 +22,7 @@ export function MatchesPage(props) {
     }, []);
 
     return (
-        <div>
-
-            <Header 
-            currentPage={props.currentPage}
-            changePage={props.changePage}
-            />
-
+        <ContainerMatches>
             <ul>
                 {matches.map((profile) => {
                     return (
@@ -40,6 +33,6 @@ export function MatchesPage(props) {
                     )
                 })}
             </ul>
-        </div>
+        </ContainerMatches>
     )
 }
