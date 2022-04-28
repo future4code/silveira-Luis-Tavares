@@ -1,31 +1,24 @@
 import axios from "axios";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "../../hooks/useForm";
 import { BASE_URL } from "../../constants/requests";
 import { goBack, goToAdminHomePage } from "../../routes/coordinator";
 
 export function LoginPage() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const {form, onChange, cleanFields} = useForm({email: "", password: ""});
     const navigate = useNavigate();
 
-    const onChangeEmail = event => setEmail(event.target.value);
-    const onChangePassword = event => setPassword(event.target.value);
+    const login = async (event) => {
+        event.preventDefault();
 
-    const login = async () => {
         try {
-            let body = {
-                email: email,
-                password: password
-            }
-
-            const response = await axios.post(`${BASE_URL}/login`, body);
+            const response = await axios.post(`${BASE_URL}/login`, form);
             localStorage.setItem("token", response.data.token);
             goToAdminHomePage(navigate);
 
         } catch(error) {
             alert("Email ou senha inválidos, tente novamente.");
-            setPassword("");
+            cleanFields();
         }
     };
     
@@ -33,15 +26,16 @@ export function LoginPage() {
         <div>
             <h3>Login</h3>
 
-            <div>
-                <input placeholder="Email" value={email} onChange={onChangeEmail} />
-                <input placeholder="Senha" value={password} onChange={onChangePassword} />
-            </div>
-
-            <div>
-                <button onClick={ () => goBack(navigate) }>Voltar</button>
-                <button onClick={ login }>Entrar</button>
-            </div>
+            <form onSubmit={ login }>
+                <div>
+                    <input placeholder="Email" name="email" value={form.email} onChange={onChange} />
+                    <input type="password" placeholder="Senha" name="password" value={form.password} onChange={onChange} />
+                </div>
+                <div>
+                    <button onClick={ () => goBack(navigate) }>Voltar</button>
+                    <button>Entrar</button>
+                </div>
+            </form>
         </div>
     );
 };

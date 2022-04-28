@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export function useRequestData(url, headers) {
     const [data, setData] = useState(undefined);
     
-    useEffect(() => {
+    const getData = () => {
         const headersAPI = {
             headers: {
                 auth: localStorage.getItem("token")
@@ -14,7 +14,11 @@ export function useRequestData(url, headers) {
         axios.get(url, headersAPI)
         .then((response) => setData(response.data))
         .catch((error) => console.log(error));
+    }
+
+    useEffect(() => {
+        getData();
     }, [url]);
 
-    return data;
+    return [data, getData];
 };

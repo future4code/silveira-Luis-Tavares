@@ -3,26 +3,21 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { countries } from "../../constants/countries";
 import { BASE_URL } from "../../constants/requests";
+import { useForm } from "../../hooks/useForm";
 import { useRequestData } from "../../hooks/useRequestData";
 import { goBack } from "../../routes/coordinator";
 
 export function ApplicationFormPage() {
     const [tripId, setTripId] = useState("");
-    const [name, setName] = useState("");
-    const [age, setAge] = useState("");
-    const [applicationText, setApplicationText] = useState("");
-    const [currentJob, setCurrentJob] = useState("");
-    const [country, setCountry] = useState("");
     const navigate = useNavigate();
-    const trips = useRequestData(`${BASE_URL}/trips`);
-
-    // ---------- INPUTS CONTROLADOS ----------
-    const onChangeTripId = event => setTripId(event.target.value);
-    const onChangeName = event => setName(event.target.value);
-    const onChangeAge = event => setAge(event.target.value);
-    const onChangeText = event => setApplicationText(event.target.value);
-    const onChangeJob = event => setCurrentJob(event.target.value);
-    const onChangeCountry = event => setCountry(event.target.value);
+    const [trips] = useRequestData(`${BASE_URL}/trips`);
+    const {form, onChange, cleanFields} = useForm({
+        name: "",
+        age: 0,
+        applicationText: "",
+        profession: "",
+        country: ""
+    });
     
     const tripsList = trips && trips.trips.map((trip) => {
         return (
@@ -36,18 +31,14 @@ export function ApplicationFormPage() {
         )
     });
 
-    const submitApplication = async () => {
+    const onChangeTripId = event => setTripId(event.target.value); 
+    
+    const submitApplication = async (event) => {
+        event.preventDefault();
         try {
-            let body = {
-                name: name,
-                age: age,
-                applicationText: applicationText,
-                profession: currentJob,
-                country: country
-            };
-
-            await axios.post(`${BASE_URL}/trips/${tripId}/apply`, body);
+            await axios.post(`${BASE_URL}/trips/${tripId}/apply`, form);
             alert("Inscrição efetuada com sucesso!");
+            cleanFields();
 
         } catch (error) {
             console.log(error);
@@ -58,27 +49,28 @@ export function ApplicationFormPage() {
         <div>
             <h3>Inscreva-se para uma viagem</h3>
 
-            <form>
+            <form onSubmit={submitApplication}>
                 <select defaultValue="" onChange={onChangeTripId}>
                     <option value="" disabled>Escolha uma Viagem</option>
                     {tripsList}
                 </select>
 
-                <input placeholder="Nome" value={name} onChange={onChangeName} />
-                <input placeholder="Idade" value={age} onChange={onChangeAge} />
-                <input placeholder="Texto de inscrição" value={applicationText} onChange={onChangeText} />
-                <input placeholder="Profissão" value={currentJob} onChange={onChangeJob} />
+                <input placeholder="Nome" name="name" value={form.name} onChange={onChange} required />
+                <input type="number" placeholder="Idade" name="age" value={form.age} onChange={onChange} required />
+                <input placeholder="Texto de inscrição" name="applicationText" value={form.applicationText} onChange={onChange} required />
+                <input placeholder="Profissão" name="profession" value={form.profession} onChange={onChange} required />
 
-                <select defaultValue="" onChange={onChangeCountry}>
+                <select name="country" value={form.country} onChange={onChange} required>
                     <option value="" disabled>Escolha um País</option>
                     {countriesList}
                 </select>
+
+                <div>
+                    <button onClick={ () => goBack(navigate) }>Voltar</button>
+                    <button tton>Enviar</button>
+                </div>
             </form>
 
-            <div>
-                <button onClick={ () => goBack(navigate) }>Voltar</button>
-                <button onClick={submitApplication}>Enviar</button>
-            </div>
         </div>
     );
 };

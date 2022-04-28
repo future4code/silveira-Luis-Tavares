@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const TripsListContainer = styled.div`
-    /* background-color: #061f4a; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 export const HeaderContainer = styled.div`
@@ -11,16 +13,14 @@ export const HeaderContainer = styled.div`
     margin-bottom: 20px;
     border-bottom: 1px solid grey;
     padding: 10px;
-
-    // Botões
-    button {
-        border: none;
-        color: black;
-        padding: 5px;
-    }
+    width: 50vw;
 
     //Título Página 
     h2 {
         font-size: 1.8rem;
     }
+`
+
+export const NoTripMessage = styled.p`
+    text-align: center;
 `

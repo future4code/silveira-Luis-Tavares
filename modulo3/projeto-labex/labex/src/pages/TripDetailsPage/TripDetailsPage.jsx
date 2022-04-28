@@ -1,14 +1,38 @@
 import axios from "axios";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { BASE_URL } from "../../constants/requests";
 import { useProtectedData } from "../../hooks/useProtectedData";
 import { useRequestData } from "../../hooks/useRequestData";
+import { goBack } from "../../routes/coordinator";
 
 export function TripDetailsPage() {
     useProtectedData();
+    const navigate = useNavigate();
     const params = useParams();
-    const tripDetails = useRequestData(`${BASE_URL}/trip/${params.id}`);
+    const [tripDetails, getTripDetails] = useRequestData(`${BASE_URL}/trip/${params.id}`);
+
+    const decideCandidate = async (boolean, candidateId) => {
+        if(window.confirm("Tem certeza que quer confirmar a opção selecionada?")) {
+            try {
+                let body = {
+                    approve: boolean
+                };
+    
+                const headersAPI = {
+                    headers: {
+                        auth: localStorage.getItem("token")
+                    }
+                };
+    
+                await axios.put(`${BASE_URL}/trips/${params.id}/candidates/${candidateId}/decide`, body, headersAPI);
+                alert("Resultado computado!");
+                getTripDetails();
+
+            } catch(error) {
+                console.log(error);
+            }
+        }
+    };
 
     return (
         <div>
@@ -37,12 +61,13 @@ export function TripDetailsPage() {
                             </div>
 
                             <div>
-                                <button>Aprovar</button>
-                                <button>Reprovar</button>
+                                <button onClick={ () => decideCandidate(true, candidate.id) }>Aprovar</button>
+                                <button onClick={ () => decideCandidate(false, candidate.id) }>Reprovar</button>
                             </div>
                         </div>
                     );
                 })}
+
             </div>
 
             <div>
@@ -50,14 +75,14 @@ export function TripDetailsPage() {
 
                 <ul>
                     {tripDetails.trip.approved.map((person) => {
-                        <li key={person.name}>{person.name}</li>
+                        return <li key={person.name}>{person.name}</li>   
                     })}
                 </ul>
             </div>
 
             </>)}
 
-            <button>Voltar para o Painel Administrativo</button>
+            <button onClick={ () => {goBack(navigate)} }>Voltar para o Painel ADM</button>
         </div>
     );
 };
