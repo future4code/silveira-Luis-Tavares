@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CustomizedButton } from "../../components/CustomizedButton/CustomizedButton";
+import { PageTitle } from "../../components/PageTitle/PageTitle";
 import { countries } from "../../constants/countries";
 import { BASE_URL } from "../../constants/requests";
 import { useForm } from "../../hooks/useForm";
 import { useRequestData } from "../../hooks/useRequestData";
 import { goBack } from "../../routes/coordinator";
+import { ApplicationContainer } from "./styles";
 
 export function ApplicationFormPage() {
     const [tripId, setTripId] = useState("");
@@ -47,9 +50,9 @@ export function ApplicationFormPage() {
 
     return (
         <div>
-            <h3>Inscreva-se para uma viagem</h3>
+            <PageTitle text={"Inscreva-se para uma viagem"} />
 
-            <form onSubmit={submitApplication}>
+            <ApplicationContainer onSubmit={submitApplication}>
                 <select defaultValue="" onChange={onChangeTripId}>
                     <option value="" disabled>Escolha uma Viagem</option>
                     {tripsList}
@@ -66,10 +69,10 @@ export function ApplicationFormPage() {
                 </select>
 
                 <div>
-                    <button onClick={ () => goBack(navigate) }>Voltar</button>
-                    <button tton>Enviar</button>
+                    <CustomizedButton onClick={ () => goBack(navigate) } text={"Voltar"} />
+                    <CustomizedButton text={"Enviar"} />
                 </div>
-            </form>
+            </ApplicationContainer>
 
         </div>
     );

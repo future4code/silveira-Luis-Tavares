@@ -14,13 +14,9 @@ export const HeaderContainer = styled.div`
     border-bottom: 1px solid grey;
     padding: 10px;
     width: 50vw;
-
-    //Título Página 
-    h2 {
-        font-size: 1.8rem;
-    }
 `
 
-export const NoTripMessage = styled.p`
+export const OutOfBoxText = styled.p`
     text-align: center;
+    font-style: italic;
 `

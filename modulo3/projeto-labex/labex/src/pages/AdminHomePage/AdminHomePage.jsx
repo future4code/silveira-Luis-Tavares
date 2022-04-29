@@ -5,11 +5,14 @@ import { useProtectedData } from "../../hooks/useProtectedData";
 import { useRequestData } from "../../hooks/useRequestData";
 import { goBack, goToLoginPage, goToTripCreation, goToTripDetails } from "../../routes/coordinator";
 import { CustomizedButton } from "../../components/CustomizedButton/CustomizedButton";
+import { ContainerAdminHomePage, OutOfBoxText, TripsContainer } from "./styles";
+import deleteIcon from "../../assets/imgs/delete.svg";
+import { PageTitle } from "../../components/PageTitle/PageTitle";
 
 export function AdminHomePage() {
     useProtectedData();
     
-    const [trips, getTrips] = useRequestData(`${BASE_URL}/trips`);
+    const [trips, getTrips, isLoading] = useRequestData(`${BASE_URL}/trips`);
     const navigate = useNavigate();
 
     const deleteTrip = async (tripId) => {
@@ -39,29 +42,32 @@ export function AdminHomePage() {
     };
 
     return (
-        <div>
+        <ContainerAdminHomePage>
 
-            <h3>Painel administrativo</h3>
+            <PageTitle text={"Painel administrativo"} />
 
-            {trips && trips.trips.length > 0 ? (
-                trips.trips.map((trip) => {
+            {isLoading && <OutOfBoxText>Carregando...</OutOfBoxText>}
+
+            {!isLoading && trips && trips.trips.length === 0 && <OutOfBoxText>Sem viagens existentes.</OutOfBoxText>}
+
+            {!isLoading && trips && 
+            trips.trips.map((trip) => {
                 return (
-                    <div key={trip.id}>
-                        <div onClick={ () => goToTripDetails(navigate, trip.id) }>
-                            <p>{trip.name}</p>
-                        </div>
-                        
-                        <button onClick={ () => deleteTrip(trip.id) }>Remover</button>
-                    </div>
+                    <TripsContainer key={trip.id}>
+                        <p onClick={ () => goToTripDetails(navigate, trip.id) }>{trip.name}</p>
+                
+                        <img onClick={ () => deleteTrip(trip.id) } src={deleteIcon} />
+                    </TripsContainer>
                 );
-            })) : (<p>Sem viagens existentes.</p>)}
+            })}
+
 
             <div>
-                <CustomizedButton onClick={ () => goBack(navigate) }>Voltar</CustomizedButton>
-                <CustomizedButton onClick={ () => goToTripCreation(navigate) }>Criar Viagem</CustomizedButton>
-                <CustomizedButton onClick={ logout }>Logout</CustomizedButton>
+                <CustomizedButton onClick={ () => goBack(navigate) } text={"Voltar"} />
+                <CustomizedButton onClick={ () => goToTripCreation(navigate) } text={"Criar viagem"} />
+                <CustomizedButton onClick={ logout } text={"Logout"} />
             </div>
 
-        </div>
+        </ContainerAdminHomePage>
     );
 };

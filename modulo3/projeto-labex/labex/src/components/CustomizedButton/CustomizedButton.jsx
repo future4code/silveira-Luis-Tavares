@@ -3,6 +3,6 @@ import { Botao } from './styles';
 
 export function CustomizedButton(props) {
   return (
-    <Botao onClick={props.onClick} />
+    <Botao onClick={props.onClick}>{props.text}</Botao>
   );
 ;}

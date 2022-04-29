@@ -1,15 +1,24 @@
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { CustomizedButton } from "../../components/CustomizedButton/CustomizedButton";
+import { PageTitle } from "../../components/PageTitle/PageTitle";
 import { BASE_URL } from "../../constants/requests";
 import { useProtectedData } from "../../hooks/useProtectedData";
 import { useRequestData } from "../../hooks/useRequestData";
 import { goBack } from "../../routes/coordinator";
+import { 
+    ContainerApprovedList, 
+    ContainerCandidates, 
+    ContainerTripDetails, 
+    ContainerTripInfos, 
+    FlexContainerCandidates, 
+    OutOfBoxText } from "./styles";
 
 export function TripDetailsPage() {
     useProtectedData();
     const navigate = useNavigate();
     const params = useParams();
-    const [tripDetails, getTripDetails] = useRequestData(`${BASE_URL}/trip/${params.id}`);
+    const [tripDetails, getTripDetails, isLoading] = useRequestData(`${BASE_URL}/trip/${params.id}`);
 
     const decideCandidate = async (boolean, candidateId) => {
         if(window.confirm("Tem certeza que quer confirmar a opção selecionada?")) {
@@ -35,54 +44,65 @@ export function TripDetailsPage() {
     };
 
     return (
-        <div>
-            {tripDetails && (<>
-
-            <div>
-                <h3>{tripDetails.trip.name}</h3>
+        <ContainerTripDetails>
+            {isLoading && <OutOfBoxText>Carregando informações...</OutOfBoxText> }
+            
+            {!isLoading && tripDetails && 
+            <ContainerTripInfos>
+                <PageTitle text={tripDetails.trip.name} />
                 <p><strong>Planeta:</strong> {tripDetails.trip.planet}</p>
                 <p><strong>Descrição:</strong> {tripDetails.trip.description}</p>
                 <p><strong>Duração:</strong> {tripDetails.trip.durationInDays} dias</p>
                 <p><strong>Data de ínicio:</strong> {tripDetails.trip.date}</p>
-            </div>
+            </ContainerTripInfos>}
+        
+        
+        <div>    
+        {!isLoading && tripDetails && tripDetails.trip.candidates.length === 0 && (<>
+        <PageTitle text={"Candidatos Pendentes"} />
+        <OutOfBoxText>Sem candidatos pendentes.</OutOfBoxText></>)}
 
-            <div>
-                <h3>Candidatos Pendentes</h3>
-                
-                {tripDetails.trip.candidates.map((candidate) => {
-                    return (
-                        <div key={candidate.name}>
-                            <div>
-                                <h4>{candidate.name}</h4>
-                                <p>Idade: {candidate.age}</p>
-                                <p>Profissão: {candidate.profession}</p>
-                                <p>Texto de aplicação: {candidate.applicationText}</p>
-                                <p>País de origem: {candidate.country}</p>
-                            </div>
+        {!isLoading && tripDetails && tripDetails.trip.candidates.length > 0 && (<>
+        <PageTitle text={"Candidatos Pendentes"} />
 
-                            <div>
-                                <button onClick={ () => decideCandidate(true, candidate.id) }>Aprovar</button>
-                                <button onClick={ () => decideCandidate(false, candidate.id) }>Reprovar</button>
-                            </div>
-                        </div>
-                    );
-                })}
-
-            </div>
-
-            <div>
-                <h3>Candidatos Aprovados</h3>
-
-                <ul>
-                    {tripDetails.trip.approved.map((person) => {
-                        return <li key={person.name}>{person.name}</li>   
-                    })}
-                </ul>
-            </div>
-
-            </>)}
-
-            <button onClick={ () => {goBack(navigate)} }>Voltar para o Painel ADM</button>
+        <FlexContainerCandidates>
+        {tripDetails.trip.candidates.map((candidate) => {
+            return (
+                <ContainerCandidates key={candidate.name}>
+                    <div>
+                        <h3>{candidate.name}</h3>
+                        <p><strong>Idade:</strong> {candidate.age}</p>
+                        <p><strong>Profissão:</strong> {candidate.profession}</p>
+                        <p><strong>Texto de aplicação:</strong> {candidate.applicationText}</p>
+                        <p><strong>País de origem:</strong> {candidate.country}</p>
+                    </div>
+    
+                    <div>
+                        <span onClick={ () => decideCandidate(false, candidate.id) }>❌</span>
+                        <span onClick={ () => decideCandidate(true, candidate.id) }>✔️</span>
+                    </div>
+                </ContainerCandidates>
+            );
+        })}
+        </FlexContainerCandidates></>)}
         </div>
+
+        <ContainerApprovedList>
+            {!isLoading && tripDetails && tripDetails.trip.approved.length === 0 && (<>
+            <PageTitle text={"Candidatos Aprovados"} />
+            <OutOfBoxText>Sem candidatos aprovados.</OutOfBoxText></>)}
+
+            <ul>
+            {!isLoading && tripDetails && tripDetails.trip.approved.length > 0 && (<>
+            <PageTitle text={"Candidatos Aprovados"} />
+            {tripDetails.trip.approved.map((person) => {
+                return <li key={person.name}>- {person.name} -</li>   
+            })}</>)}
+            </ul>
+
+            <CustomizedButton onClick={ () => {goBack(navigate)} } text={"Voltar para o Painel ADM"} />
+        </ContainerApprovedList>
+
+        </ContainerTripDetails>
     );
 };

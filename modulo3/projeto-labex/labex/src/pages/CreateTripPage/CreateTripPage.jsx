@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { CustomizedButton } from "../../components/CustomizedButton/CustomizedButton";
+import { PageTitle } from "../../components/PageTitle/PageTitle";
 import { planets } from "../../constants/planets";
 import { BASE_URL } from "../../constants/requests";
 import { useForm } from "../../hooks/useForm";
 import { useProtectedData } from "../../hooks/useProtectedData";
 import { goBack } from "../../routes/coordinator";
+import { FormContainer,  } from "./styles";
 
 export function CreateTripPage() {
     useProtectedData();
@@ -43,9 +46,9 @@ export function CreateTripPage() {
     return (
         <div>
 
-            <h3>Cadastrar nova viagem</h3>
+            <PageTitle text={"Cadastrar nova viagem"} />
 
-            <form onSubmit={createTrip}>
+            <FormContainer onSubmit={createTrip}>
                 <input placeholder="Nome" name="name" value={form.name} onChange={onChange} required />
                 <select defaultValue="" name="planet" onChange={onChange} required>
                     <option value="" disabled>Escolha um planeta</option>
@@ -56,10 +59,10 @@ export function CreateTripPage() {
                 <input type="number" placeholder="Duração em dias" name="durationInDays" value={form.durationInDays} onChange={onChange} required />  
 
                 <div>
-                    <button onClick={ () => goBack(navigate) }>Voltar</button>
-                    <button>Cadastrar</button>
+                    <CustomizedButton onClick={ () => goBack(navigate) } text={"Voltar"} />
+                    <CustomizedButton text={"Cadastrar"} />
                 </div> 
-            </form>
+            </FormContainer>
     
         </div>
     );

@@ -1,3 +1,7 @@
+export const goToHome = (navigate) => {
+    navigate(`/`);
+}
+
 export const goToTripsList = (navigate) => {
     navigate(`/trips/list`);
 };

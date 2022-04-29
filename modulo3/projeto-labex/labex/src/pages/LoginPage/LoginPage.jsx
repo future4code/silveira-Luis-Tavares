@@ -2,7 +2,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { BASE_URL } from "../../constants/requests";
-import { goBack, goToAdminHomePage } from "../../routes/coordinator";
+import { goToHome, goToAdminHomePage } from "../../routes/coordinator";
+import { PageTitle } from "../../components/PageTitle/PageTitle";
+import { LoginContainer } from "./styles";
+import { CustomizedButton } from "../../components/CustomizedButton/CustomizedButton";
 
 export function LoginPage() {
     const {form, onChange, cleanFields} = useForm({email: "", password: ""});
@@ -24,18 +27,17 @@ export function LoginPage() {
     
     return (
         <div>
-            <h3>Login</h3>
+            <PageTitle text={"Login"} />
 
-            <form onSubmit={ login }>
+            <LoginContainer onSubmit={ login }>
+                <input placeholder="Email" name="email" value={form.email} onChange={onChange} />
+                <input type="password" placeholder="Senha" name="password" value={form.password} onChange={onChange} />
+
                 <div>
-                    <input placeholder="Email" name="email" value={form.email} onChange={onChange} />
-                    <input type="password" placeholder="Senha" name="password" value={form.password} onChange={onChange} />
+                    <CustomizedButton onClick={ () => goToHome(navigate) } text={"Voltar"} />
+                    <CustomizedButton text={"Entrar"} />
                 </div>
-                <div>
-                    <button onClick={ () => goBack(navigate) }>Voltar</button>
-                    <button>Entrar</button>
-                </div>
-            </form>
+            </LoginContainer>
         </div>
     );
 };

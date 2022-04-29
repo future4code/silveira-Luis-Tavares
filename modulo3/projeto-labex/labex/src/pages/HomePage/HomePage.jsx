@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { goToTripsList, goToAdminHomePage } from "../../routes/coordinator";
 import { HomePageContainer } from "./styles";
 import logo from "../../assets/imgs/logo.png";
-import { Botao } from "../../components/CustomizedButton/styles";
+import { CustomizedButton } from "../../components/CustomizedButton/CustomizedButton";
 
 export function HomePage() {
     const navigate = useNavigate();
@@ -15,8 +15,8 @@ export function HomePage() {
             </div>
 
             <div>
-                <Botao onClick={() => goToTripsList(navigate)}>Ver viagens</Botao>
-                <Botao onClick={() => goToAdminHomePage(navigate)}>Área de Admin</Botao>
+                <CustomizedButton onClick={() => goToTripsList(navigate)} text={"Ver viagens"} />
+                <CustomizedButton onClick={() => goToAdminHomePage(navigate)} text={"Área de Admin"} />
             </div>
         </HomePageContainer>
     );
