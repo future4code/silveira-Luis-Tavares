@@ -9,7 +9,6 @@ const headers = {
 export const createPost = async (body, cleanFields, getPosts) => {
     try {
         await axios.post(`${BASE_URL}/posts`, body, headers);
-        alert("Post criado com sucesso!");
         cleanFields();
         getPosts();
 

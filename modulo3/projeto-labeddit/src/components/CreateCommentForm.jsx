@@ -14,17 +14,19 @@ export function CreateCommentForm({postId, getComments}) {
             <textarea
             placeholder="Adicionar comentário"
             name="body"
-            value={form.value}
+            value={form.body}
             onChange={onChange}
-            className="border">
+            className="border-transparent rounded-lg h-24 p-2 bg-zinc-200 placeholder:text-zinc-500">
 
             </textarea>
 
             <button
              type="submit"
-             className="border-transparent rounded-full bg-slate-400 w-5/5">
+             className="colored-button my-2">
                 Responder
             </button>
+
+            <div className="h-0.5 bg-gradient-to-r from-pink-400 to-orange-400 mb-8" />
         </form>
     );
 };

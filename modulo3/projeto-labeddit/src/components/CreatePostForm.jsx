@@ -10,23 +10,25 @@ export function CreatePostForm({getPosts}) {
     };
 
     return (
-        <form onSubmit={sendPost} className="flex flex-col">
+        <form onSubmit={sendPost} className="flex flex-col gap-2">
 
-            <input placeholder="Título..." name="title" value={form.title} onChange={onChange} />
+            <input placeholder="Título..." name="title" value={form.title} onChange={onChange} className="default-input bg-zinc-200 placeholder:text-zinc-500" />
 
             <textarea
             placeholder="Escreva seu post..."
             name="body"
             value={form.body}
             onChange={onChange}
-            className="border">
+            className="border-transparent rounded-lg h-24 p-2 bg-zinc-200 placeholder:text-zinc-500">
             </textarea>
 
             <button 
             type="submit"
-            className="border-transparent rounded-full bg-slate-400 w-5/5">
+            className="colored-button">
                 Postar
             </button>
+
+            <div className="h-0.5 bg-gradient-to-r from-pink-400 to-orange-400 mb-8" />
 
         </form>
     );

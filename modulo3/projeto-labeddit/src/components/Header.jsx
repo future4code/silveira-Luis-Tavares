@@ -14,7 +14,7 @@ export function Header({isPostPage}) {
     };
 
     return (
-        <header className="border-transparent bg-gray-300 flex items-center justify-end mb-5 p-2 w-screen relative">
+        <header className="border-transparent bg-zinc-200 flex items-center justify-end mb-5 p-2 w-screen relative">
             <img src={closeIcon} alt="Ícone voltar" onClick={() => goToFeedListPage(navigate)} className={isPostPage ? "h-8 absolute left-0" : "hidden"} />
 
             <img src={logo} alt="Labedit logo" className="h-7 absolute right-2/4" />

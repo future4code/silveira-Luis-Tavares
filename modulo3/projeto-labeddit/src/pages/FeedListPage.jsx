@@ -22,7 +22,7 @@ export function FeedListPage() {
 
                 <CreatePostForm getPosts={getData} />
                 
-                {isLoading && <span>Carregando posts...</span>}
+                {isLoading && <span className="text-center">Carregando posts...</span>}
 
                 {!isLoading && data && data.map((post) => {
                     return <PostCard key={post.id}

@@ -9,7 +9,6 @@ const headers = {
 export const createComment = async (postId, body, cleanFields, getComments) => {
     try {
         await axios.post(`${BASE_URL}/posts/${postId}/comments`, body, headers);
-        alert("Comentário enviado com sucesso!");
         cleanFields();
         getComments();
 

@@ -2,6 +2,7 @@ import { useForm } from "../hooks/useForm";
 import { login } from "../services/user";
 
 import { useNavigate } from "react-router-dom";
+import { goToSignupPage } from "../router/coordinator";
 
 export function LoginForm() {
     const {form, onChange, cleanFields} = useForm({email: "", password: ""});
@@ -24,7 +25,7 @@ export function LoginForm() {
                      type="email" 
                      placeholder="Email" 
                      onChange={ onChange }
-                     className="border p-2 rounded" />
+                     className="default-input" />
                     <input
                      required
                      name="password"
@@ -32,16 +33,24 @@ export function LoginForm() {
                      type="password"
                      placeholder="Senha"
                      onChange={ onChange }
-                     className="border p-2 rounded" />
+                     className="default-input" />
                 </div>
 
                 <button
                  type="submit"
-                 className="colored-button mt-6">
+                 className="colored-rounded-button mt-6">
                     Continuar
                 </button>
 
-                <hr />
+                <div className="h-0.5 bg-gradient-to-r from-pink-400 to-orange-400 my-5" />
+
+                <button
+                 type="button"
+                 onClick={ () => goToSignupPage(navigate) }
+                 className="border rounded-full border-orange-500 text-orange-500 font-semibold p-2 hover:cursor-pointer">
+                    Crie uma conta!
+                </button>
+
         </form>
     );
 };

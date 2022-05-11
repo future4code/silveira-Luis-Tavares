@@ -19,14 +19,14 @@ export function CommentCard({commentId, username, body, voteSum, userVote, getCo
     };
 
     return (
-        <div className="border border-black flex flex-col justify-between mb-5 p-2">
-            <span className="text-xs">Enviado por: {username}</span>
-            <h2>{body}</h2>
+        <div className="border rounded-lg p-2 flex flex-col justify-between gap-3 mb-5 p-2">
+            <span className="text-xs text-zinc-500">Enviado por: {username}</span>
+            <h2 className="text-lg">{body}</h2>
 
-            <div className="border rounded-full flex p-1 w-fit">
-                <img src={upVoteIcon} alt="Up Vote" onClick={handleUpVote} className={userVote === 1 ? ("h-5 bg-green-500") : ("h-5")} />
-                <span className="mx-5">{voteSum}</span>
-                <img src={downVoteIcon} alt="Down Vote" onClick={handleDownVote} className={userVote === -1 ? ("h-5 bg-red-500") : ("h-5")} />
+            <div className="icon-container w-fit">
+                <img src={upVoteIcon} alt="Up Vote" onClick={handleUpVote} className={userVote === 1 ? ("h-4 bg-green-500") : ("h-4")} />
+                <span className="text-xs text-zinc-500 mx-5">{voteSum}</span>
+                <img src={downVoteIcon} alt="Down Vote" onClick={handleDownVote} className={userVote === -1 ? ("h-4 bg-red-500") : ("h-4")} />
             </div>
         </div>
     );

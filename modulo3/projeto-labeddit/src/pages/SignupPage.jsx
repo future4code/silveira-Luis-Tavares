@@ -10,7 +10,8 @@ export function SignupPage() {
             <Header />
 
             <div className="flex flex-col justify-center items-center">
-                <h1>Olá, boas vindas ao LabEddit ;)</h1>
+                <h1 className="relative right-5 text-3xl font-bold">Olá, boas vindas ao <br /> LabEddit ;)</h1>
+
                 <SignupForm />
             </div>
         </>

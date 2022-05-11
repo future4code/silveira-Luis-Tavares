@@ -20,7 +20,7 @@ export function PostPage() {
 
             <div className="w-4/5 m-auto">
 
-                {posts.isLoading && comments.isLoading && <p>Carregando posts e comentários...</p>}
+                {posts.isLoading && comments.isLoading && <p className="text-center">Carregando posts e comentários...</p>}
 
                 {!posts.isLoading && posts && posts.data.map((post) => {
                     if(post.id === params.id) {

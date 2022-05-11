@@ -14,24 +14,24 @@ export function SignupForm() {
     return (
         <form 
          onSubmit={ onSubmitSignup }
-         className="flex flex-col">
+         className="flex flex-col gap-2 w-4/5 mt-44">
             <input 
              required
              name="username"
              value={form.username}
              type="text" 
-             placeholder="Nome" 
+             placeholder="Nome de usuário" 
              onChange={ onChange }
-             className="border p-1" />
+             className="default-input" />
 
             <input 
              required
              name="email"
              value={form.email}
              type="email"
-             placeholder="Email"
+             placeholder="E-mail"
              onChange={ onChange }
-             className="border p-1"/>
+             className="default-input"/>
             
             <input 
              required
@@ -40,18 +40,18 @@ export function SignupForm() {
              type="password"
              placeholder="Senha"
              onChange={ onChange }
-             className="border p-1" />
+             className="default-input" />
 
-            <p>Ao continuar, você concorda com o nosso Contrato de usuário e nossa Política de Privacidade</p>
+            <p className="text-xs mt-24">Ao continuar, você concorda com o nosso <span className="text-blue-500">Contrato de usuário</span> e nossa <span className="text-blue-500">Política de Privacidade</span></p>
 
-            <div className="flex">
-                <input type="checkbox" />
-                <p>Eu concordo em receber emails sobre coisas legais no Labeddit</p>
+            <div className="flex justify-between items-center">
+                <input type="checkbox" className="mr-4" />
+                <p className="text-xs">Eu concordo em receber emails sobre coisas legais no Labeddit</p>
             </div>
 
             <button 
              type="submit"
-             className="border">
+             className="colored-rounded-button">
                 Cadastrar
             </button>            
         </form>
