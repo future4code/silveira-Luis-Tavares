@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.colored-button {
+    @apply border-transparent rounded-full bg-gradient-to-r from-pink-400 to-orange-400 text-white p-2 hover:cursor-pointer;
+};

@@ -15,8 +15,8 @@ export function LoginForm() {
     return (
         <form
             onSubmit={ onSubmitLogin }
-            className="flex flex-col">
-                <div className="flex flex-col">
+            className="flex flex-col w-4/5">
+                <div className="flex flex-col gap-2">
                     <input
                      required
                      name="email"
@@ -24,7 +24,7 @@ export function LoginForm() {
                      type="email" 
                      placeholder="Email" 
                      onChange={ onChange }
-                     className="border p-1" />
+                     className="border p-2 rounded" />
                     <input
                      required
                      name="password"
@@ -32,12 +32,12 @@ export function LoginForm() {
                      type="password"
                      placeholder="Senha"
                      onChange={ onChange }
-                     className="border p-1" />
+                     className="border p-2 rounded" />
                 </div>
 
                 <button
                  type="submit"
-                 className="border p-1 hover:cursor-pointer hover:bg-gray-300">
+                 className="colored-button mt-6">
                     Continuar
                 </button>
 

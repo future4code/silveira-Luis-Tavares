@@ -10,10 +10,14 @@ export function useRequestData(initialState, endpoint) {
         try {
             setIsLoading(true);
 
-            const headers = {Authorization: localStorage.getItem("token")};
+            const headers = {
+                headers: {Authorization: localStorage.getItem("token")}
+            };
+
             const response = await axios.get(`${BASE_URL}${endpoint}`, headers);
             setData(response.data);
             setIsLoading(false);
+            
         } catch(error) {
             alert("Ocorreu um erro, tente novamente.");
             console.log(error);
@@ -21,6 +25,6 @@ export function useRequestData(initialState, endpoint) {
         }
     };
 
-    useEffect(() => getData(), [endpoint]);
+    useEffect(() => {getData()}, [endpoint]);
     return {data, getData, isLoading};
 };

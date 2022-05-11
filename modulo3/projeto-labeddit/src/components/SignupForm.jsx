@@ -16,31 +16,31 @@ export function SignupForm() {
          onSubmit={ onSubmitSignup }
          className="flex flex-col">
             <input 
-            required
-            name="username"
-            value={form.username}
-            type="text" 
-            placeholder="Nome" 
-            onChange={ onChange }
-            className="border p-1" />
+             required
+             name="username"
+             value={form.username}
+             type="text" 
+             placeholder="Nome" 
+             onChange={ onChange }
+             className="border p-1" />
 
             <input 
-            required
-            name="email"
-            value={form.email}
-            type="email"
-            placeholder="Email"
-            onChange={ onChange }
-            className="border p-1"/>
+             required
+             name="email"
+             value={form.email}
+             type="email"
+             placeholder="Email"
+             onChange={ onChange }
+             className="border p-1"/>
             
             <input 
-            required
-            name="password"
-            value={form.password}
-            type="password"
-            placeholder="Senha"
-            onChange={ onChange }
-            className="border p-1" />
+             required
+             name="password"
+             value={form.password}
+             type="password"
+             placeholder="Senha"
+             onChange={ onChange }
+             className="border p-1" />
 
             <p>Ao continuar, você concorda com o nosso Contrato de usuário e nossa Política de Privacidade</p>
 
