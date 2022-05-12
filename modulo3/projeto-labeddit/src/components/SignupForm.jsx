@@ -45,7 +45,7 @@ export function SignupForm() {
             <p className="text-xs mt-24">Ao continuar, você concorda com o nosso <span className="text-blue-500">Contrato de usuário</span> e nossa <span className="text-blue-500">Política de Privacidade</span></p>
 
             <div className="flex justify-between items-center">
-                <input type="checkbox" className="mr-4" />
+                <input required type="checkbox" className="mr-4" />
                 <p className="text-xs">Eu concordo em receber emails sobre coisas legais no Labeddit</p>
             </div>
 

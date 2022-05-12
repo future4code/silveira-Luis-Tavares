@@ -4,10 +4,11 @@ import { useRequestData } from "../hooks/useRequestData";
 import { goToPostPage } from "../router/coordinator";
 import { useNavigate } from "react-router-dom";
 
+import loadingIcon from "../assets/loading.png";
+
 import { Header } from "../components/Header";
 import { PostCard } from "../components/PostCard";
 import { CreatePostForm } from "../components/CreatePostForm";
-import { useEffect } from "react";
 
 export function FeedListPage() {
     useProtectedPage();
@@ -22,7 +23,7 @@ export function FeedListPage() {
 
                 <CreatePostForm getPosts={getData} />
                 
-                {isLoading && <span className="text-center">Carregando posts...</span>}
+                {isLoading && <img src={loadingIcon} alt="Loading" className="m-auto w-7 animate-spin" />}
 
                 {!isLoading && data && data.map((post) => {
                     return <PostCard key={post.id}

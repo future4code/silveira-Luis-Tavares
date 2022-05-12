@@ -16,9 +16,7 @@ export function CreateCommentForm({postId, getComments}) {
             name="body"
             value={form.body}
             onChange={onChange}
-            className="border-transparent rounded-lg h-24 p-2 bg-zinc-200 placeholder:text-zinc-500">
-
-            </textarea>
+            className="border-transparent rounded-lg resize-none h-24 p-2 bg-zinc-200 placeholder:text-zinc-500" />
 
             <button
              type="submit"

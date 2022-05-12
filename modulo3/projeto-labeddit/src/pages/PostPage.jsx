@@ -1,12 +1,15 @@
 import { useParams } from "react-router-dom";
 
+import { useProtectedPage } from "../hooks/useProtectedPage";
+import { useRequestData } from "../hooks/useRequestData";
+import { CreateCommentForm } from "../components/CreateCommentForm";
+
+import loadingIcon from "../assets/loading.png";
+
 import { CommentCard } from "../components/CommentCard";
 import { Header } from "../components/Header";
 import { PostCard } from "../components/PostCard";
 
-import { useProtectedPage } from "../hooks/useProtectedPage";
-import { useRequestData } from "../hooks/useRequestData";
-import { CreateCommentForm } from "../components/CreateCommentForm";
 
 export function PostPage() {
     useProtectedPage();
@@ -19,8 +22,6 @@ export function PostPage() {
             <Header isPostPage />
 
             <div className="w-4/5 m-auto">
-
-                {posts.isLoading && comments.isLoading && <p className="text-center">Carregando posts e comentários...</p>}
 
                 {!posts.isLoading && posts && posts.data.map((post) => {
                     if(post.id === params.id) {
@@ -37,6 +38,8 @@ export function PostPage() {
                 })}
 
                 <CreateCommentForm postId={params.id} getComments={comments.getData} />
+
+                {posts.isLoading && comments.isLoading && <img src={loadingIcon} alt="Loading" className="m-auto w-7 animate-spin" />}
 
                 {!comments.isLoading && comments && comments.data.map((comment) => {
                     return <CommentCard key={comment.id}

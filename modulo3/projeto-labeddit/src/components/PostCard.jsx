@@ -1,5 +1,9 @@
 import upVoteIcon from "../assets/up-vote.svg";
+import greenUpVoteIcon from "../assets/green-upvote.png";
+
 import downVoteIcon from "../assets/down-vote.svg";
+import redDownVoteIcon from "../assets/red-downvote.png";
+
 import commentIcon from "../assets/comment.svg";
 
 import { handlePostVote } from "../services/posts";
@@ -21,7 +25,7 @@ export function PostCard({postId, onClick, username, title, body, voteSum, userV
     };
 
     return (
-        <div className="border rounded-lg p-2 flex flex-col justify-between gap-3 mb-5 p-2">
+        <div className="border rounded-lg p-2 flex flex-col justify-between gap-3 mb-5">
 
             <div onClick={onClick}>
                 <span className="text-xs text-zinc-500">Enviado por: {username}</span>
@@ -34,9 +38,9 @@ export function PostCard({postId, onClick, username, title, body, voteSum, userV
 
             <div className="flex gap-x-4">
                 <div className="icon-container">
-                    <img src={upVoteIcon} alt="Up Vote" onClick={handleUpVote} className={userVote === 1 ? ("h-4 bg-green-500") : ("h-4")} />
+                    <img src={userVote === 1 ? greenUpVoteIcon : upVoteIcon} alt="Up Vote" onClick={handleUpVote} className={userVote === 1 ? "h-4 hover:cursor-pointer" : "hover:cursor-pointer"} />
                     <span className="text-xs text-zinc-500 mx-4">{voteSum}</span>
-                    <img src={downVoteIcon} alt="Down Vote" onClick={handleDownVote} className={userVote === -1 ? ("h-4 bg-red-500") : ("h-4")} />
+                    <img src={userVote === -1 ? redDownVoteIcon : downVoteIcon} alt="Down Vote" onClick={handleDownVote} className={userVote === -1 ? "h-4 hover:cursor-pointer" : "hover:cursor-pointer"} />
                 </div>
 
                 <div className={commentCount ? "icon-container w-12" : "icon-container"}>

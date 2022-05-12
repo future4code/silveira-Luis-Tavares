@@ -24,9 +24,9 @@ export function CommentCard({commentId, username, body, voteSum, userVote, getCo
             <h2 className="text-lg">{body}</h2>
 
             <div className="icon-container w-fit">
-                <img src={upVoteIcon} alt="Up Vote" onClick={handleUpVote} className={userVote === 1 ? ("h-4 bg-green-500") : ("h-4")} />
+            <img src={userVote === 1 ? greenUpVoteIcon : upVoteIcon} alt="Up Vote" onClick={handleUpVote} className={userVote === 1 ? "h-4 hover:cursor-pointer" : "hover:cursor-pointer"} />
                 <span className="text-xs text-zinc-500 mx-5">{voteSum}</span>
-                <img src={downVoteIcon} alt="Down Vote" onClick={handleDownVote} className={userVote === -1 ? ("h-4 bg-red-500") : ("h-4")} />
+                <img src={userVote === -1 ? redDownVoteIcon : downVoteIcon} alt="Down Vote" onClick={handleDownVote} className={userVote === -1 ? "h-4 hover:cursor-pointer" : "hover:cursor-pointer"} />
             </div>
         </div>
     );
