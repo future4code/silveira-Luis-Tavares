@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.colored-button {
+    @apply border-transparent rounded-lg bg-gradient-to-r from-pink-400 to-orange-400 text-white font-semibold p-2 hover:cursor-pointer;
+};
+
+.colored-rounded-button {
+    @apply border-transparent rounded-full bg-gradient-to-r from-pink-400 to-orange-400 text-white font-semibold p-2 hover:cursor-pointer;
+};
+
+.default-input {
+    @apply border p-2 rounded;
+};
+
+.icon-container {
+    @apply border rounded-full p-2 flex items-center justify-between;
+};
