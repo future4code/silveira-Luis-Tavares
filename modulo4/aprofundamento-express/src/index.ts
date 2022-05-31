@@ -83,6 +83,18 @@ app.post("/todos/create/:userId", (req: Request, res: Response) => {
 
 /* ------ EXERCÍCIO 7 ------ */
 
-app.delete("/todos/delete/", (req: Request, res: Response) => {
-
+app.delete("/todos/delete/:userId/:id", (req: Request, res: Response) => {
+    const {userId, id} = req.params;
+    const findTask = todos.findIndex((task) => task.userId === +userId && task.id === +id);
+    
+    if(req.params) {
+        todos.splice(findTask, 1);
+        res.status(200).send({message: "Task deletada com sucesso!", toDos: todos.filter((task) => task.userId === +userId)});
+    } else {
+        res.status(404).send({message: "Por favor, informe os params corretamente para continuar"});
+    }
 });
+
+/* ------ EXERCÍCIO 8 ------ */
+
+app.get("todos/all/:userId", (req: Request, res: Response) => res.status(200).send(todos.filter((task) => task.userId === +req.params.userId)));
