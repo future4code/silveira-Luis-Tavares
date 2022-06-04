@@ -6,6 +6,10 @@ export const clients: Array<Client> = [
     {name: "Dwight Schrute", cpf: "123-876-450-75", birthDate: "05/09/1980", balance: 10000, extract: []},
 ];
 
+export const convertDate = (date: string) => {
+    return date.split("/").reverse().join("/");
+};
+
 export const checkAge = (date: string) => {
     var date1 = new Date(date.split("/").reverse().join("/"));
     var date2 = new Date();
