@@ -1,0 +1,16 @@
+POST http://localhost:3003/users
+content-type: application/json
+
+ 
+    {
+        "name": "Eric Silva",
+        "email": "eric_silva@email.com",
+        "password": "13245"
+    }
+
+###
+
+GET http://localhost:3003/users
+
+###
+
