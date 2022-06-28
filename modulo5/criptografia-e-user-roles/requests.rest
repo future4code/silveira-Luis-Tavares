@@ -1,0 +1,25 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+    {
+        "email": "miranha@email.com",
+        "password": "peterparker",
+        "role": "NORMAL"
+    }
+
+###
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+    {
+        "email": "luis_email@hotmail.com",
+        "password": "123456"
+    }
+
+###
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkYWY0MTZhLWQyNzItNGFlYi04MWQ4LTA3YjA1ZGY2NDdmMiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTY0MzkwMjQsImV4cCI6MTY1NjQzOTMyNH0.k_oXyLXdk6fa1x4aABziYAc6j0SSZZhuTAnTzxhCHbE
+
+GET http://localhost:3003/user/profile
+Authorization: {{token}} 
