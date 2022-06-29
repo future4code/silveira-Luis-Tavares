@@ -1,0 +1,14 @@
+{
+  "name": "heranca-polimorfismo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "heranca": "tsc && node ./build/heranca.js",
+    "polimorf": "tsc && node ./build/polimorfismo.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}
