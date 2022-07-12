@@ -1,0 +1,24 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+    {
+        "email": "test4@email.com",
+        "password": 123456
+    }
+
+###
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+    {
+        "email": "luis_email@hotmail.com",
+        "password": "123456"
+    }
+
+###
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUyMTM4NGEyLWE5NGItNGY4ZC04NDM5LTc0YWQ4Y2I1ZmQ2NSIsImlhdCI6MTY1NjM1NjQ3NSwiZXhwIjoxNjU2MzU2NTM1fQ.23PMZ-iltSCnAG1jNpdSNpEMwkw_4HekNoG2Sl-lE0Q
+
+GET http://localhost:3003/user/profile
+Authorization: {{token}} 
