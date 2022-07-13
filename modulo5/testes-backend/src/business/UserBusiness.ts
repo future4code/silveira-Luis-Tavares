@@ -22,7 +22,7 @@ export class UserBusiness {
             return user;
             
         } catch (error: any) {
-            throw new CustomError(404, "Usuário não encontrado");
+            throw new CustomError(error.statusCode, error.message);
         }
     };
 };
