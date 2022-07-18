@@ -1,0 +1,36 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+    {
+        "name": "Luis Felipe",
+        "email": "luis_email@hotmail.com",
+        "password": "minhasenha"
+    }
+
+###
+
+# @name login
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+    {
+        "email": "luis_email@hotmail.com",
+        "password": "minhasenha"
+    }
+
+###
+
+POST http://localhost:3003/post/create
+Content-Type: application/json
+Authorization: {{login.response.body.token}}
+
+    {
+        "image": "hhttps://i.imgur.com/Fekcp8d.jpeg",
+        "description": "The Office Meme",
+        "type": "Normal"
+    }
+
+###
+
+GET http://localhost:3003/post/2b3e1732-20ca-47ce-a881-ea91c8aa66b2
