@@ -1,3 +1,5 @@
+import ratingStar from "../assets/estrela.png";
+
 interface MovieInfosProps {
     title: string,
     release_year: string,
@@ -5,6 +7,7 @@ interface MovieInfosProps {
     brazil_release_date: string,
     genres: string,
     duration: string,
+    rating: string,
     overview: string
 };
 
@@ -15,19 +18,28 @@ export function MovieInfos({
     brazil_release_date,
     genres,
     duration,
+    rating,
     overview
 }: MovieInfosProps) {
     return (
         <>
             <div>
-                <h2>{title} ({release_year})</h2>
+                <h2 className="text-3xl font-semibold">{title} ({release_year})</h2>
 
-                <p>{brazilCertification} anos ° {brazil_release_date} (BR) ° {genres} ° {duration} </p>
+                <p className="text-lg my-2">{brazilCertification} anos • {brazil_release_date} (BR) • {genres} • {duration}</p>
 
-                <p>avaliação dos usuários</p>
+                <div className="flex flex-col w-fit items-center mb-6">
+                    <img className="w-6"
+                    src={ratingStar} alt="Star" />
 
-                <p>Sinópse</p>
-                <p>{overview}</p>
+                    <div>
+                        <span className="text-2xl">{rating}</span>
+                        <span>/10</span>
+                    </div>
+                </div>
+
+                <p className="text-xl font-bold">Sinopse</p>
+                <p className="mt-2 mb-8">{overview}</p>
             </div>
         </>
     );

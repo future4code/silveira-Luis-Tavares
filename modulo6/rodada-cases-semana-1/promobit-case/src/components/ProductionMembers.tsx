@@ -43,31 +43,31 @@ export function ProductionMembers({
 
 
     return (
-        <>
+        <div className="grid grid-cols-3 gap-x-0 gap-y-6 w-4/5">
             <div>
-                <p>{producers[0].name}</p>
-                <p>{producers[0].job}</p>
+                <p className="font-bold">{producers[0].name}</p>
+                <p className="text-sm">{producers[0].job}</p>
             </div>
 
             <div>
-                <p>{producers[1].name}</p>
-                <p>{producers[1].job}</p>
+                <p className="font-bold">{producers[1].name}</p>
+                <p className="text-sm">{producers[1].job}</p>
             </div>
 
             <div>
-                <p>{director[0].name}</p>
-                <p>{director[0].job}</p>
+                <p className="font-bold">{director[0].name}</p>
+                <p className="text-sm">{director[0].job}</p>
             </div>
             
             <div>
-                <p>{writer[0].name}</p>
-                <p>{writer[0].job}</p>
+                <p className="font-bold">{writer[0].name}</p>
+                <p className="text-sm">{writer[0].job}</p>
             </div>
 
             <div>
-                <p>{designer[0].name}</p>
-                <p>{designer[0].job}</p>
+                <p className="font-bold">{designer[0].name}</p>
+                <p className="text-sm">{designer[0].job}</p>
             </div>
-        </>
+        </div>
     );
 }; 

@@ -1,13 +1,13 @@
 interface MovieGenreButtonProps {
     genreId: number,
     genre: string,
-    selectedGenreId: Array<number>,
+    selectedGenreId: Object,
     setSelectedGenreId: any
 }
 
 export function MovieGenreButton({ genreId, genre, selectedGenreId, setSelectedGenreId }: MovieGenreButtonProps) {
     const selectGenre = (genreId: number) => {
-        const selectedGenre = [...selectedGenreId, genreId];
+        const selectedGenre = {...selectedGenreId, [genreId]: true};
 
         setSelectedGenreId(selectedGenre);
     };

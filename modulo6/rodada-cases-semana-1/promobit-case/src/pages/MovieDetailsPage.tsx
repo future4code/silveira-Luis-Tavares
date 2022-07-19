@@ -20,8 +20,6 @@ export function MovieDetailsPage() {
         return genre.name;
     });
 
-    // console.log(producers)
-
     const convertMinutesToMovieDurationTime = (min: number) => {
         const hours = min / 60;
         const intHours = Math.floor(hours);
@@ -39,10 +37,12 @@ export function MovieDetailsPage() {
             { details.data.data && brazilInfos && genres &&
             <div className="bg-dark_purple flex justify-center items-center text-white absolute w-screen">
                 <div className="flex w-fit relative top-16 left-28">
+
                     <img className="w-96 rounded mr-8"
                     src={`${BASE_URL_IMAGE}${details.data.data.poster_path}`}
                     alt={`${details.data.data.title} poster`} />
-                    <div className="w-2/5">
+
+                    <div className="w-2/5 flex flex-col h-fit">
                         <MovieInfos
                          title={details.data.data.title}
                          release_year={brazilInfos[0].release_dates[0].release_date.split("-").at(0)}
@@ -50,12 +50,15 @@ export function MovieDetailsPage() {
                          brazil_release_date={brazilInfos[0].release_dates[0].release_date.substring(0, 10).split("-").reverse().join("/")}
                          genres={genres.join(", ")}
                          duration={convertMinutesToMovieDurationTime(details.data.data.runtime)}
+                         rating={details.data.data.vote_average}
                          overview={details.data.data.overview}
                         />
+
                         <ProductionMembers
                          members={cast.data.data.crew}
                         />
                     </div>
+
                 </div>
             </div>
             }

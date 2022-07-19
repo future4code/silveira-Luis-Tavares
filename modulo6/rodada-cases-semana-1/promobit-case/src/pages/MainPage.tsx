@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export function MainPage() {
-    const [selectedGenreId, setSelectedGenreId] = useState([]);
+    const [selectedGenreId, setSelectedGenreId] = useState<{[key: number]: Boolean}>({});
 
     const genres = useRequestData([], "/genre/movie/list");
     const movies = useRequestData([], "/movie/popular");
@@ -25,16 +25,20 @@ export function MainPage() {
         );
     });
 
-    const moviesList = movies.data.data && movies.data.data.results.map((movie: any) => {
+    const moviesList = movies.data.data && movies.data.data.results.filter((movie: any) => {
         return (
-            <MovieCard key={movie.id}
-             id={movie.id}
-             poster={movie.poster_path}
-             title={movie.title}
-             release_date={movie.release_date}
-             navigate={navigate}
-            />
+            Object.keys(selectedGenreId).length === 0 || movie.genre_ids.some((id: any) => selectedGenreId[id])
         );
+    }).map((movie: any) => {
+        return (
+                <MovieCard key={movie.id}
+                 id={movie.id}
+                 poster={movie.poster_path}
+                 title={movie.title}
+                 release_date={movie.release_date}
+                 navigate={navigate}
+                />
+            );
     });
 
     return (
@@ -52,7 +56,7 @@ export function MainPage() {
                     {genresList}
                 </div>
 
-                <div className="bg-white flex justify-center">
+                <div className="bg-white flex justify-center w-full">
                     <div className="flex flex-wrap justify-center w-4/5 gap-8 m-8">
                         {moviesList}
                     </div>
