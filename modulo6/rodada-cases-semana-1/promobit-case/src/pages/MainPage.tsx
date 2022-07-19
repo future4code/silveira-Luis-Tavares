@@ -3,8 +3,11 @@ import { Header } from "../components/Header";
 import { useRequestData } from "../hooks/useRequestData";
 import { MovieCard } from "../components/MovieCard";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export function MainPage() {
+    const [selectedGenreId, setSelectedGenreId] = useState([]);
+
     const genres = useRequestData([], "/genre/movie/list");
     const movies = useRequestData([], "/movie/popular");
 
@@ -12,7 +15,13 @@ export function MainPage() {
 
     const genresList = genres.data.data && genres.data.data.genres.map((genre: any) => {
         return (
-            <MovieGenreButton key={genre.id} genre={genre.name} />
+            <MovieGenreButton
+             key={genre.id}
+             genreId={genre.id}
+             genre={genre.name}
+             selectedGenreId={selectedGenreId}
+             setSelectedGenreId={setSelectedGenreId}
+            />
         );
     });
 
@@ -32,7 +41,7 @@ export function MainPage() {
         <div className="font-sans text-white w-screen">
             <Header />
 
-            <div className="flex flex-col justify-center items-center bg-dark_purple">
+            <main className="flex flex-col justify-center items-center bg-dark_purple">
                 <h1 className="text-5xl text-center mt-14 font-bold">
                     Milhões de filmes, séries e pesssoas <br /> para descobrir. Explore já.
                 </h1>
@@ -49,7 +58,7 @@ export function MainPage() {
                     </div>
                 </div>
 
-            </div>
+            </main>
         </div>
     );
 };

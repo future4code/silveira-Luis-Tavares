@@ -6,7 +6,7 @@ import { API_KEY_AND_LANGUAGE, BASE_URL } from "../constants/api";
 export function useRequestData(initialState: any, endpoint: string) {
     const [data, setData] = useState(initialState);
 
-    const getData = async () => {
+    const getData = async (): Promise<any> => {
         try {
             const response = await axios.get(`${BASE_URL}${endpoint}${API_KEY_AND_LANGUAGE}`);
             
