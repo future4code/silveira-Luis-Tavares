@@ -3,23 +3,23 @@ import { BASE_URL_IMAGE } from "../constants/api";
 interface MovieCastCarouselProps {
     name: string,
     character: string,
-    profile_pic: string
+    profile_path: string
 };
 
-export function MovieCastCarousel({
+export const MovieCastCarousel: React.FC<MovieCastCarouselProps> = ({
     name,
     character,
-    profile_pic
-}: MovieCastCarouselProps) {
+    profile_path
+}) => {
     return (
-        <div className="w-44 border">
-                <div className="w-full">
-                    <img className="w-4/5 mr-40"
-                    src={`${BASE_URL_IMAGE}${profile_pic}`} alt={`Foto de ${name}`} />
+        <div className="flex flex-col justify-between p-2 mx-2 shadow-[0_4px_4px_0_#00000040]">
+                <div className="w-44">
+                    <img className="rounded max-w-full"
+                    src={`${BASE_URL_IMAGE}${profile_path}`} alt={`Foto de ${name}`} />
                 </div>
 
-                <p>{name}</p>
-                <p>{character}</p>
+                <p className="font-bold self-start">{name}</p>
+                <p className="text-sm self-start">{character}</p>
         </div>
     );
 };

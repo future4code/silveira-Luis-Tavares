@@ -11,7 +11,7 @@ interface MovieInfosProps {
     overview: string
 };
 
-export function MovieInfos({
+export const MovieInfos: React.FC<MovieInfosProps> = ({
     title,
     release_year,
     brazilCertification,
@@ -20,7 +20,7 @@ export function MovieInfos({
     duration,
     rating,
     overview
-}: MovieInfosProps) {
+}) => {
     return (
         <>
             <div>

@@ -1,11 +1,16 @@
 interface MovieGenreButtonProps {
     genreId: number,
     genre: string,
-    selectedGenreId: Object,
+    selectedGenreId: any,
     setSelectedGenreId: any
 }
 
-export function MovieGenreButton({ genreId, genre, selectedGenreId, setSelectedGenreId }: MovieGenreButtonProps) {
+export const MovieGenreButton: React.FC<MovieGenreButtonProps> = ({
+    genreId, 
+    genre, 
+    selectedGenreId, 
+    setSelectedGenreId
+}) => {
     const selectGenre = (genreId: number) => {
         const selectedGenre = {...selectedGenreId, [genreId]: true};
 

@@ -9,13 +9,13 @@ interface MovieCardProps {
     navigate: any
 };
 
-export function MovieCard({
+export const MovieCard: React.FC<MovieCardProps> = ({
     id,
     poster,
     title,
     release_date,
     navigate
-}: MovieCardProps) {
+}) => {
     const convertDate = (releaseDate: string): string => {
         let [year, month, day] = releaseDate.split("-");
 

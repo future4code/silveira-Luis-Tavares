@@ -4,7 +4,7 @@
 
 @layer utilities {
     .cast-scrollbar::-webkit-scrollbar {
-	    width: 2rem;
+	    width: 0px;
     }
     
     .cast-scrollbar::-webkit-scrollbar-track {

@@ -1,4 +1,4 @@
-export function Header() {
+export const Header: React.FC = () => {
     return (
         <header className="border-transparent bg-light_purple flex items-center w-screen p-2">
 

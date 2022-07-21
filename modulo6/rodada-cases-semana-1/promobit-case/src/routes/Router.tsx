@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { MainPage } from "../pages/MainPage";
 import { MovieDetailsPage } from "../pages/MovieDetailsPage";
 
-export function Router() {
+export const Router: React.FC = () => {
     return (
         <BrowserRouter>
             <Routes>

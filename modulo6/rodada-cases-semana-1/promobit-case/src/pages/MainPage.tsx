@@ -5,7 +5,20 @@ import { MovieCard } from "../components/MovieCard";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export function MainPage() {
+interface MovieGenre {
+    id: number,
+    name: string
+};
+
+interface Movie {
+    id: number,
+    genre_ids: MovieGenre[]
+    poster_path: string,
+    title: string,
+    release_date: string,
+};
+
+export const MainPage: React.FC = () => {
     const [selectedGenreId, setSelectedGenreId] = useState<{[key: number]: Boolean}>({});
 
     const genres = useRequestData([], "/genre/movie/list");
@@ -13,7 +26,7 @@ export function MainPage() {
 
     const navigate = useNavigate();
 
-    const genresList = genres.data.data && genres.data.data.genres.map((genre: any) => {
+    const genresList = genres.data.data && genres.data.data.genres.map((genre: MovieGenre) => {
         return (
             <MovieGenreButton
              key={genre.id}
@@ -25,11 +38,11 @@ export function MainPage() {
         );
     });
 
-    const moviesList = movies.data.data && movies.data.data.results.filter((movie: any) => {
+    const moviesList = movies.data.data && movies.data.data.results.filter((movie: Movie) => {
         return (
-            Object.keys(selectedGenreId).length === 0 || movie.genre_ids.some((id: any) => selectedGenreId[id])
+            Object.keys(selectedGenreId).length === 0 || movie.genre_ids.some((genre: MovieGenre) => selectedGenreId[genre.id])
         );
-    }).map((movie: any) => {
+    }).map((movie: Movie) => {
         return (
                 <MovieCard key={movie.id}
                  id={movie.id}
