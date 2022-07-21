@@ -1,17 +1,22 @@
-import { BASE_URL_IMAGE } from "../constants/api";
-import { goToMovieDetailsPage } from "../routes/coordinator";
+import { NavigateFunction } from "react-router-dom";
 
-interface MovieCardProps {
+import { Movie } from "../../types/movie";
+
+import { BASE_URL_IMAGE } from "../../constants/api";
+
+import { goToMovieDetailsPage } from "../../routes/coordinator";
+
+interface Props {
     id: number,
-    poster: string,
+    poster_path: string,
     title: string,
     release_date: string,
-    navigate: any
+    navigate: NavigateFunction
 };
 
-export const MovieCard: React.FC<MovieCardProps> = ({
+export const MovieCard: React.FC<Props> = ({
     id,
-    poster,
+    poster_path,
     title,
     release_date,
     navigate
@@ -61,11 +66,10 @@ export const MovieCard: React.FC<MovieCardProps> = ({
         return `${day} ${month} ${year}`;
     };
 
-
     return (
         <div className="flex flex-col w-64">
             <img className="border-transparent rounded h-96 hover:border cursor-pointer"
-            src={`${BASE_URL_IMAGE}${poster}`} 
+            src={`${BASE_URL_IMAGE}${poster_path}`} 
             alt={`${title} poster`}
             onClick={ () => goToMovieDetailsPage(navigate, id) }
             />
