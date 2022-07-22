@@ -14,26 +14,22 @@ export const GenreButton: React.FC<Props> = ({
     const genres = useRequestData([], "/genre/movie/list");
     const genresList = genres.data.data && genres.data.data.genres;
 
-    const isGenreSelected = (id: number) => Object.keys(selectedGenreId).find((genre: any) => genre.id === id) ? true : false;
-
-    // ----------- FILTRO NÃO ESTÁ FUNCIONANDO JUNTO COM A MUDANÇA DE ESTILIZAÇÃO DO BOTÃO -----------
-    // console.log(Object.keys(selectedGenreId).find((genre: any) => genre.id === 35));
-    // console.log(selectedGenreId);
-    
-
     const selectGenre = (genreId: number) => {
         const selectedGenre = {...selectedGenreId, [genreId]: true};
-
+        
         setSelectedGenreId(selectedGenre);
     };
 
+    // ---- quando um gênero é removido, todos são removidos junto
     const removeGenre = (genreId: number) => {
-        const selectedGenre = {...selectedGenreId, [genreId]: false};
+        const genreIndex = Object.keys(selectedGenreId).findIndex((genre) => genre === genreId.toString());
 
-        setSelectedGenreId(selectedGenre);
+        const newSelectedGenreList = Object.keys(selectedGenreId).splice(genreIndex, 1);
+
+        setSelectedGenreId(newSelectedGenreList);
     };
-
-    // console.log(selectedGenreId)
+    
+    const isGenreSelected = (id: number) => Object.keys(selectedGenreId).find((genreId: string) => genreId === id.toString()) ? true : false;    
 
     return (
             <>{ genresList && genresList.map((genre: any) => {

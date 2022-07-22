@@ -22,7 +22,7 @@ export const Trailer: React.FC<Props> = ({ id }) => {
              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
              className="mb-14"
             /> :
-            <h4 className="text-lg italic font-semibold">Trailer indisponível</h4>
+            <p className="text-lg italic font-semibold">Trailer indisponível</p>
         }</>
     );
 };

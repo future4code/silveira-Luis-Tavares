@@ -18,7 +18,7 @@ export const MovieDetailsPage: React.FC = () => {
 
     const { data } = useRequestData({}, `/movie/${id}`);
     const details: MovieDetails = data && data.data;
-    
+
     const production = useRequestData({}, `/movie/${id}/credits`);
     const crew: Producer[] = production.data.data && production.data.data.crew;
     const cast: Actor[] = production.data.data && production.data.data.cast;
@@ -40,7 +40,7 @@ export const MovieDetailsPage: React.FC = () => {
                             title={details.title}
                             genres={details.genres}
                             runtime={details.runtime}
-                            vote_average={details.vote_average}
+                            vote_average={details.vote_average.toString()}
                             overview={details.overview}
                             />
 

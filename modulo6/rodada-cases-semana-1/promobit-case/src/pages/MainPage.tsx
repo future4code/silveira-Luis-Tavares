@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRequestData } from "../hooks/useRequestData";
 
@@ -6,19 +6,17 @@ import { GenreButton } from "../components/MainPage/GenreButton";
 import { MovieCard } from "../components/MainPage/MovieCard";
 
 import { Movie, MovieDTO } from "../types/movie";
-import { Genre } from "../types/genre";
 
 export const MainPage: React.FC = () => {
     const [selectedGenreId, setSelectedGenreId] = useState<{[key: number]: Boolean}>({});
     const navigate = useNavigate();
 
-    const { data } = useRequestData([], "/movie/popular");
+    const { data, getData } = useRequestData([], "/movie/popular");
     const movies: MovieDTO[] = data.data && data.data.results;
 
+    // ---- depois de remover filtro selecionado, a lista de todos filmes não aparece novamente ----
     const moviesList = movies && movies.filter((movie: MovieDTO) => {
-        return (
-            Object.keys(selectedGenreId).length === 0 || movie.genre_ids.some((genre: Genre) => selectedGenreId[genre.id])
-        );
+        return Object.keys(selectedGenreId).length === 0 || movie.genre_ids.some((genre: any) => selectedGenreId[genre]);
     }).map((movie: Movie) => {
         return (
                 <MovieCard key={movie.id}
