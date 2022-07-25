@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useRequestData } from "../../hooks/useRequestData";
 
-import { Movie, MovieDTO } from "../../types/movie";
+import { Movie } from "../../types/movie";
 
 import { MovieCard } from "../MainPage/MovieCard";
 

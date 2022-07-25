@@ -1,7 +1,5 @@
 import { NavigateFunction } from "react-router-dom";
 
-import { Movie } from "../../types/movie";
-
 import { BASE_URL_IMAGE } from "../../constants/api";
 
 import { goToMovieDetailsPage } from "../../routes/coordinator";

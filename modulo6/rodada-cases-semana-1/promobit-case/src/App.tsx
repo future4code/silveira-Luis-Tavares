@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Router } from "./routes/Router";
 
@@ -9,8 +7,6 @@ const App: React.FC = () => {
       <Header />
 
       <Router />
-
-      <Footer />
     </div>
   )
 };
