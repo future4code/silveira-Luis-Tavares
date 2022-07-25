@@ -35,7 +35,7 @@ export const GenreButton: React.FC<Props> = ({
             <>{ genresList && genresList.map((genre: any) => {
                 if (!isGenreSelected(genre.id)) {
                     return (
-                        <button className={`rounded py-2 px-4 font-bold text-dark_grey mb-3 mr-3 bg-white hover:bg-orange-100`}
+                        <button className={`rounded py-2 px-4 font-bold text-dark_grey mb-3 mr-3 bg-white hover:bg-orange-100`} key={genre.id}
                          onClick={ () => selectGenre(genre.id) }>
                             {genre.name}
                         </button>

@@ -6,6 +6,7 @@ import { GenreButton } from "../components/MainPage/GenreButton";
 import { MovieCard } from "../components/MainPage/MovieCard";
 
 import { Movie, MovieDTO } from "../types/movie";
+import { Header } from "../components/Header";
 
 export const MainPage: React.FC = () => {
     const [selectedGenreId, setSelectedGenreId] = useState<{[key: number]: Boolean}>({});
@@ -30,26 +31,30 @@ export const MainPage: React.FC = () => {
     });
 
     return (
-        <div className="font-sans text-white w-screen">
-            <main className="flex flex-col justify-center items-center bg-dark_purple">
+        <>
+            <Header navigate={navigate} />
+            
+            <div className="font-sans text-white w-screen">
+                <main className="flex flex-col justify-center items-center bg-dark_purple">
 
-                <h1 className="text-5xl text-center mt-14 font-bold">
-                    Milhões de filmes, séries e pesssoas <br /> para descobrir. Explore já.
-                </h1>
+                    <h1 className="text-5xl text-center mt-14 font-bold">
+                        Milhões de filmes, séries e pesssoas <br /> para descobrir. Explore já.
+                    </h1>
 
-                <p className="uppercase text-xs font-bold mt-8 p-4">Filtre por:</p>
+                    <p className="uppercase text-xs font-bold mt-8 p-4">Filtre por:</p>
 
-                <div className="w-3/5 flex flex-wrap justify-center mb-14">
-                    <GenreButton selectedGenreId={selectedGenreId} setSelectedGenreId={setSelectedGenreId} />
-                </div>
-
-                <div className="bg-white flex justify-center w-full">
-                    <div className="flex flex-wrap justify-center w-4/5 gap-8 m-8">
-                        {moviesList}
+                    <div className="w-3/5 flex flex-wrap justify-center mb-14">
+                        <GenreButton selectedGenreId={selectedGenreId} setSelectedGenreId={setSelectedGenreId} />
                     </div>
-                </div>
 
-            </main>
-        </div>
+                    <div className="bg-white flex justify-center w-full">
+                        <div className="flex flex-wrap justify-center w-4/5 gap-8 m-8">
+                            {moviesList}
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+        </>
     );
 };

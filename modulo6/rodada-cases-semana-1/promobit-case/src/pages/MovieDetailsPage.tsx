@@ -1,8 +1,9 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useRequestData } from "../hooks/useRequestData";
 
 import { BASE_URL_IMAGE } from "../constants/api";
 
+import { Header } from "../components/Header";
 import { CastCarousel } from "../components/MovieDetailsPage/CastCarousel";
 import { Infos } from "../components/MovieDetailsPage/Infos";
 import { ProductionCrew } from "../components/MovieDetailsPage/ProductionCrew";
@@ -11,10 +12,10 @@ import { Recommendations } from "../components/MovieDetailsPage/Recommendations"
 
 import { MovieDetails } from "../types/movie";
 import { Actor, Producer } from "../types/production";
-import { useEffect } from "react";
 
 export const MovieDetailsPage: React.FC = () => {
     const { id } = useParams<string>();
+    const navigate = useNavigate();
 
     const { data } = useRequestData({}, `/movie/${id}`);
     const details: MovieDetails = data && data.data;
@@ -27,6 +28,8 @@ export const MovieDetailsPage: React.FC = () => {
         <main>
             { details && production &&
             <>
+                <Header navigate={navigate} />
+
                 <div className="bg-dark_purple flex justify-center items-center text-white w-screen">
                     <div className="flex w-10/12 relative top-16">
 
