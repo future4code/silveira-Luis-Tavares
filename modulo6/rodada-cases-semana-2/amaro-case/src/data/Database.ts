@@ -1,4 +1,7 @@
 import knex, { Knex } from "knex";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export class Database {
     protected static connection: Knex = knex({

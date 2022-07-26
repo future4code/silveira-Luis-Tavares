@@ -1,6 +1,10 @@
-import { Tag } from "../models/Tag";
+import { TagDTO } from "./Tag";
 
 export interface ProductCreationDTO {
     name: string,
-    tags: Array<Tag>
+    tags: Array<TagDTO>
+};
+
+export interface ProductDB {
+    name: string
 };

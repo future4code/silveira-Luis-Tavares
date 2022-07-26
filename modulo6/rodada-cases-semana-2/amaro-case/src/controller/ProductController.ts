@@ -6,16 +6,19 @@ export class ProductController {
     constructor (
         private productBusiness: ProductBusiness
     ) {};
+
     public createProduct = async (req: Request, res: Response): Promise<void> => {
         try {
             const { name, tags } = req.body;
 
-            const newProduct: ProductCreationDTO = {
+            const product: ProductCreationDTO = {
                 name,
                 tags
             };
 
-            await this.productBusiness.createProduct(newProduct);
+            await this.productBusiness.createProduct(product);
+
+            res.status(201).send({ message: "Produto criado com sucesso" });
 
         } catch (error: any) {
             res.status(error.message || 500).send({ error: error.message });
