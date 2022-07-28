@@ -16,7 +16,12 @@ CREATE TABLE IF NOT EXISTS amaro_products_tags (
 );
 
 ALTER TABLE amaro_products AUTO_INCREMENT = 8000;
+ALTER TABLE amaro_tags AUTO_INCREMENT = 200;
 
 SELECT * FROM amaro_products;
 SELECT * FROM amaro_tags;
 SELECT * FROM amaro_products_tags;
+
+DROP TABLE amaro_products_tags;
+DROP TABLE amaro_products;
+DROP TABLE amaro_tags;

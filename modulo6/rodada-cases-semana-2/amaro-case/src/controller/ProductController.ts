@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { ProductBusiness } from "../business/ProductBusiness";
-import { ProductCreationDTO } from "../interfaces/Product";
+import { ProductCreationDTO, ProductSearchDTO } from "../interfaces/Product";
 
 export class ProductController {
     constructor (
@@ -19,6 +19,23 @@ export class ProductController {
             await this.productBusiness.createProduct(product);
 
             res.status(201).send({ message: "Produto criado com sucesso" });
+
+        } catch (error: any) {
+            res.status(error.message || 500).send({ error: error.message });
+        }
+    };
+
+    public getProducts = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const { id, name, tags } = req.query;
+
+            const input: ProductSearchDTO = {
+                id: Number(id),
+                name: name as string,
+                tags: tags as string[]
+            };
+
+            const products = await this.productBusiness.getProducts(input);
 
         } catch (error: any) {
             res.status(error.message || 500).send({ error: error.message });

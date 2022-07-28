@@ -1,10 +1,14 @@
-import { TagDTO } from "./Tag";
-
 export interface ProductCreationDTO {
     name: string,
-    tags: Array<TagDTO>
+    tags: string[]
 };
 
 export interface ProductDB {
     name: string
+};
+
+export interface ProductSearchDTO {
+    id?: number,
+    name?: string,
+    tags?: string[]
 };

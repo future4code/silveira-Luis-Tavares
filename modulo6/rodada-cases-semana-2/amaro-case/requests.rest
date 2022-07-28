@@ -2,6 +2,6 @@ POST http://localhost:3003/product/create
 Content-Type: application/json
 
     {
-        "name": "VESTIDO MOLETOM COM CAPUZ MESCLA",
-        "tags": ["casual", "metal", "metal"]
+        "name": "VESTIDO MIDI VELUDO DECOTADO",
+        "tags": ["couro", "veludo"]
     }
