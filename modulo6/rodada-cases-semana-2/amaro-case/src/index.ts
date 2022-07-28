@@ -4,4 +4,4 @@ import { productRouter } from "./routes/ProductRouter";
 
 app.use("/product", productRouter);
 
-// const teste = new ProductDatabase().selectTagByName("balada");
+new ProductDatabase().selectProductByTags(["casual", "casualeira", "metal", "metaleira"]);

@@ -10,5 +10,5 @@ export interface ProductDB {
 export interface ProductSearchDTO {
     id?: number,
     name?: string,
-    tags?: string[]
+    tags?: string
 };

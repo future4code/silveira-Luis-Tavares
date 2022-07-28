@@ -14,3 +14,4 @@ const productBusiness = new ProductBusiness(
 const productController = new ProductController(productBusiness);
 
 productRouter.post("/create", productController.createProduct);
+productRouter.get("", productController.getProducts);

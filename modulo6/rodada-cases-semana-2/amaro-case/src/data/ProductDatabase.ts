@@ -21,15 +21,15 @@ export class ProductDatabase extends Database {
 
             await this.insertTags(tags);
 
-            tags.forEach(async (tagName: string): Promise<void> => {
-                const product = await this.selectProductByExactName(newProduct.name);
+            for (let tagName of tags) {
+                const product = await this.selectProductBySpecificName(newProduct.name);
                 const tag = await this.selectTagByName(tagName);
 
-                product && tag && await this.relateProductAndTagsId(product.id, tag.id);
-            });
-
+                tag && await this.relateProductAndTagsId(product.id, tag.id);
+            };
+        
         } catch (error: any) {
-            throw new CustomError(500, error.sqlMessage);
+            throw new CustomError(error.statusCode || 500, error.sqlMessage || error.message);
         }
     };
 
@@ -38,38 +38,35 @@ export class ProductDatabase extends Database {
             tags.forEach(async (tag: string): Promise<void> => {
                 const tagAlreadyExists = await this.selectTagByName(tag);
 
-                if (!tagAlreadyExists) {
+                if (!tagAlreadyExists && tag !== "") {
                     await Database.connection
-                    .insert({ 
-                        name: tag
-                     })
-                    .into(ProductDatabase.TAG_TABLE_NAME);
+                        .insert({
+                            name: tag
+                        })
+                        .into(ProductDatabase.TAG_TABLE_NAME);
                 }
             });
             
         } catch (error: any) {
-            throw new CustomError(400, error.sqlMessage);
+            throw new CustomError(error.statusCode || 500, error.sqlMessage || error.message);
         }
     };
 
-    public selectTagByName = async (name: string): Promise<any> => {
+    public selectTagByName = async (name: string): Promise<Tag> => {
         try {
-            const tag = await Database.connection
+            const [tag] = await Database.connection
             .select()
             .from(ProductDatabase.TAG_TABLE_NAME)
             .where({ name });
 
-            console.log(tag);
-            
-
-            // return tag;
+            return tag;
             
         } catch (error: any) {
-            throw new CustomError(400, error.message || error.sqlMessage);
+            throw new CustomError(error.statusCode || 500, error.message || error.message);
         }
     };
 
-    public selectProductByExactName = async (name: string): Promise<Product> => {
+    public selectProductBySpecificName = async (name: string): Promise<Product> => {
         try {
             const [product] = await Database.connection
             .select()
@@ -79,13 +76,13 @@ export class ProductDatabase extends Database {
             return product;
             
         } catch (error: any) {
-            throw new CustomError(400, error.sqlMessage);
+            throw new CustomError(error.statusCode || 500, error.sqlMessage || error.message);
         }
     };
 
     public selectProductByKeyword = async (name: string): Promise<Product[] | Product> => {
         try {
-            const [products] = await Database.connection
+            const products = await Database.connection
             .select()
             .from(ProductDatabase.PRODUCT_TABLE_NAME)
             .whereLike("name", `%${name}%`);
@@ -97,7 +94,7 @@ export class ProductDatabase extends Database {
             return products;
 
         } catch (error: any) {
-            throw new CustomError(400, error.sqlMessage);
+            throw new CustomError(error.statusCode || 400, error.sqlMessage || error.message);
         }
     };
 
@@ -115,14 +112,16 @@ export class ProductDatabase extends Database {
             return product;
 
         } catch (error: any) {
-            throw new CustomError(400, error.sqlMessage);
+            throw new CustomError(error.statusCode || 400, error.sqlMessage || error.message);
         }
     };
 
     public selectProductByTags = async (tagNames: string[]): Promise<any> => {
         try {
-            const array = tagNames.map( async (name: string) => {
-                return await Database.connection
+            // console.log(tagNames);
+            
+            const promisesArray = tagNames.map((name: string) => {
+                return Database.connection
                 .select("amaro_products.id", "amaro_products.name")
                 .from(ProductDatabase.PRODUCT_TABLE_NAME)
                 .innerJoin(
@@ -137,17 +136,26 @@ export class ProductDatabase extends Database {
                     "=",
                     "amaro_products_tags.tag_id"
                 )
-                .where("amaro_tags.name", name)
+                .where("amaro_tags.name", name);
             });
 
-            const results = await Promise.all(array);
+            const resultDB = await Promise.all(promisesArray)
 
-            // console.log(results);
-            
+            if(resultDB.length > 0) {
+                let result: Product[] = [];
 
+                resultDB.map(a => a.map(b => result.push({ id: b.id, name: b.name})));
+
+                const resultStrings = result.map(a => JSON.stringify(a));
+                const set = new Set(resultStrings);
+
+                result = Array.from(set).map(a => JSON.parse(a));
+                
+                return result;
+            }
 
         } catch (error: any) {
-            throw new CustomError(400, error.sqlMessage);
+            throw new CustomError(error.statusCode || 400, error.sqlMessage || error.message);
         }
     };
 
@@ -161,7 +169,7 @@ export class ProductDatabase extends Database {
             .into(ProductDatabase.RELATION_TABLE_NAME);
 
         } catch (error: any) {
-            throw new CustomError(400, error.sqlMessage);
+            throw new CustomError(error.statusCode || 400, error.sqlMessage || error.message);
         }
     };
 };

@@ -25,17 +25,19 @@ export class ProductController {
         }
     };
 
-    public getProducts = async (req: Request, res: Response): Promise<void> => {
+    public getProducts = async (req: Request, res: Response): Promise<any> => {
         try {
             const { id, name, tags } = req.query;
-
+            
             const input: ProductSearchDTO = {
                 id: Number(id),
                 name: name as string,
-                tags: tags as string[]
+                tags: tags as string
             };
-
+            
             const products = await this.productBusiness.getProducts(input);
+
+            res.status(200).send({ products });
 
         } catch (error: any) {
             res.status(error.message || 500).send({ error: error.message });

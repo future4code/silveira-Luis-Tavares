@@ -2,6 +2,15 @@ POST http://localhost:3003/product/create
 Content-Type: application/json
 
     {
-        "name": "VESTIDO MIDI VELUDO DECOTADO",
-        "tags": ["couro", "veludo"]
+        "name": "PRODUTO SEM TAGg",
+        "tags": [""]
+    }
+
+###
+
+GET http://localhost:3003/product
+Content-Type: application/json
+
+    {
+        "tags": ["casual", "metal"]
     }
