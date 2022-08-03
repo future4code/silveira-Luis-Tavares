@@ -19,20 +19,15 @@ export const MainPage: React.FC = () => {
     const [currentLotteryId, setCurrentLotteryId] = useState<number>(0);
 
     const lotteryName = lotterys.find(lottery => lottery.id === currentLotteryId)?.nome.toUpperCase();
-    
-    useEffect(() => {
-        getLotterys(setLotterys);
-        getConcourses(setConcourses);
-    }, []);
 
     useEffect(() => {
         getLotterys(setLotterys);
         getConcourses(setConcourses);
-    }, [currentLotteryId]);
+    }, []);
     
     useEffect(() => {
         getConcourseById(concourses, currentLotteryId, setCurrentConcourse);
-    }, [concourses]);
+    }, [concourses, currentLotteryId]);
 
     return ( currentConcourse && currentConcourse.data &&
         <> { 
