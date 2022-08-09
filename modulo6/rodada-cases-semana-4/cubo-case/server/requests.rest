@@ -1,0 +1,32 @@
+POST http://localhost:3003/create
+Content-Type: application/json
+
+    {
+        "first_name": "Carlos",
+        "last_name": "Odir",
+        "participation": 95
+    }
+
+###
+
+GET http://localhost:3003/
+
+###
+
+PUT http://localhost:3003/update
+Content-Type: application/json
+
+    {
+        "first_name": "Luis",
+        "last_name": "Felipe",
+        "participation": 10
+    }
+
+###
+DELETE http://localhost:3003/delete
+Content-Type: application/application/json
+
+    {
+        "first_name": "Carlos",
+        "last_name": "Odir"
+    }
