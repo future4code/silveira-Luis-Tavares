@@ -1,0 +1,35 @@
+import styled from "styled-components";
+
+export const Table = styled.table`
+    border-collapse: collapse;
+
+    thead {
+        th {
+            width: 150px;
+
+            :not(:first-child):not(:last-child) {
+                text-align: left;
+            }
+
+            :first-child {
+                width: 30px;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            td {
+                :first-child, :last-child {
+                    text-align: center;
+                } 
+            }
+        }
+    }
+
+    td, th {
+        border: 1px solid gray;
+        padding: 0.5rem;
+        color: gray;
+    };
+`;
