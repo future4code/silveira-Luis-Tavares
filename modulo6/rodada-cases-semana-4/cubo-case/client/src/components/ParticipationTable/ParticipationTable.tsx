@@ -1,12 +1,12 @@
-import { Participation } from "../../interfaces/participation";
+import { useContext, useEffect } from "react";
+import { ParticipationContext } from "../../context/ParticipationContext";
+
 import { Table } from "./styles";
 
-interface Props {
-    participations: Participation[]
-};
+export const ParticipationTable: React.FC = () => {
+    const { participations } = useContext(ParticipationContext);
 
-export const ParticipationTable: React.FC<Props> = ({ participations }) => {
-    const list = participations.map((part, index) => {
+    const data = participations.map((part, index) => {
         return (
             <tr key={part.id}>
                 <td>{index + 1}</td>
@@ -29,7 +29,7 @@ export const ParticipationTable: React.FC<Props> = ({ participations }) => {
             </thead>
             
             <tbody>
-                {list}
+                {data}
             </tbody>
         </Table>
     );

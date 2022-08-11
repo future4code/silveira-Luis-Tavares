@@ -1,35 +1,39 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { ParticipationContext } from "../context/ParticipationContext";
+
 import { HeaderForm } from "../components/HeaderForm/HeaderForm";
 import { ParticipationGraph } from "../components/ParticipationGraph/ParticipationGraph";
 import { ParticipationTable } from "../components/ParticipationTable/ParticipationTable";
-import { Participation } from "../interfaces/participation";
-import { getParticipations } from "../services/participation";
-import { MainContainer } from "./styles";
+
+import { getParticipations } from "../services/requests";
+
+import { MainContainer, TitleContainer } from "./styles";
 
 export const MainPage: React.FC = () => {
-    const [participations, setParticipations] = useState<Participation[]>([]);
+  const { setParticipations } = useContext(ParticipationContext);
 
-    useEffect(() => {
-        getParticipations(setParticipations);
-    }, []);
+  useEffect(() => {
+    getParticipations(setParticipations);
+  }, []);
 
-    // useEffect(() => {}, [participations]);
+  console.log("renderizou");
 
-    return (
-        <>
-          <HeaderForm />
+  return (
+      <>
+        <HeaderForm />
 
-          <div>
-            <h1>Gráfico</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias, vitae culpa quisquam aliquid sint architecto eveniet commodi repudiandae? Laborum, est esse at blanditiis corrupti porro nobis molestiae asperiores beatae quae?</p>
-          </div>
+        <TitleContainer>
+          <h1>Gráfico de participação</h1>
+          <p>Formulário de inscrição de uma pessoa em uma tabela de participação, sendo a participação visualmente representada no gráfico.</p>
+        </TitleContainer>
 
-          <MainContainer>
-            <ParticipationTable participations={participations} />
+        <MainContainer>
 
-            <ParticipationGraph />
+          <ParticipationTable />
 
-          </MainContainer>
-        </>
-    );
+          <ParticipationGraph />
+
+        </MainContainer>
+      </>
+  );
 };

@@ -1,30 +1,41 @@
+import { useContext } from "react";
+import { ParticipationContext } from "../../context/ParticipationContext";
+
 import { Chart } from "react-google-charts";
 
-export const data = [
-  ["Task", "Hours per Day"],
-  ["Work", 11],
-  ["Eat", 2],
-  ["Commute", 2],
-  ["Watch TV", 2],
-  ["Sleep", 7], // CSS-style declaration
-];
+export const ParticipationGraph: React.FC = () => {
+  const { participations } = useContext(ParticipationContext);
 
-export const options = {
-  title: "Gráfico de participação",
-  pieHole: 0.4,
-  is3D: false,
-};
+  const participationsArray = participations.map((part: any) => {
+    return [
+      `${part.first_name}`,
+      `${part.participation}`
+    ];
+  });
 
-export const ParticipationGraph = () => {
+  const data = [
+    ["Usuário", "Participação"],
+    ...participationsArray
+  ];
+
+  const options = {
+    pieHole: 0.5,
+    is3D: false,
+    chartArea: {'width': '100%', 'height': '90%', 'left': '0', 'top': '0'},
+    legend: {'position': 'bottom'}
+  };
+
   return (
-    <div style={{border: "1px solid black", width: "50%"}}>
+    <div>
+
       <Chart
       chartType="PieChart"
-      width="100%"
-      height="400px"
+      width="35vw"
+      height="300px"
       data={data}
       options={options}
     />
+
     </div>
   );
 ;}

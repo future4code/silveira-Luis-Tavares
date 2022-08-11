@@ -1,8 +1,13 @@
+import { ParticipationContextProvider } from "./context/ParticipationContext";
 import { Router } from "./routes/Router";
 
 const App: React.FC = () => {
   return (
-    <Router />
+    <ParticipationContextProvider>
+      
+      <Router />
+      
+    </ParticipationContextProvider>
   )
 };
 

@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ParticipationContext } from "../../context/ParticipationContext";
 
 import { useForm } from "../../hooks/useForm";
 
-import { createParticipation } from "../../services/participation";
+import { createParticipation } from "../../services/requests";
 import { Form } from "./styles";
 
 export const HeaderForm: React.FC = () => {
+    const { setParticipations } = useContext(ParticipationContext); 
+
     const {form, onChange, cleanFields} = useForm({
         first_name: "",
         last_name: "",
@@ -14,7 +17,7 @@ export const HeaderForm: React.FC = () => {
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        createParticipation(form, cleanFields);
+        createParticipation(form, cleanFields, setParticipations);
     };
 
     return (
