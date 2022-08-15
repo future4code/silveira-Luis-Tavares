@@ -7,7 +7,7 @@ import { createParticipation } from "../../services/requests";
 import { Form } from "./styles";
 
 export const HeaderForm: React.FC = () => {
-    const { setParticipations } = useContext(ParticipationContext); 
+    const { participations, setParticipations, participationsValue } = useContext(ParticipationContext); 
 
     const {form, onChange, cleanFields} = useForm({
         first_name: "",
@@ -15,9 +15,20 @@ export const HeaderForm: React.FC = () => {
         participation: ""
     });
 
+    const remainingValue = participationsValue.length > 0
+    ? 100 - participationsValue.reduce((prev, curr) => prev + curr)
+    : 100;
+
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        createParticipation(form, cleanFields, setParticipations);
+        
+        if (form.participation > remainingValue) {
+            alert(`The value '${form.participation}' is bigger than the current remaining value in the graph (${remainingValue}).`);
+        } else if (participations.length >= 5) {
+            alert("Max number of participations");
+        } else {
+            createParticipation(form, cleanFields, setParticipations);
+        }
     };
 
     return (

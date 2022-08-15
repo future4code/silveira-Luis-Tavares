@@ -7,7 +7,7 @@ import { CreateParticipation, DeleteParticipation, Participation, UpdateParticip
 export const createParticipation = async (
     body: CreateParticipation,
     cleanFields: VoidFunction,
-    setParticipations: React.Dispatch<SetStateAction<Participation[]>>
+    setParticipations: React.Dispatch<SetStateAction<Participation[]>>,
 ) => {
     try {
         await axios.post(`${BASE_URL}/create`, body);

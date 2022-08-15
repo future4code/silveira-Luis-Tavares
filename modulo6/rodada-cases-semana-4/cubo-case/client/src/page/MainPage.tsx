@@ -10,11 +10,17 @@ import { getParticipations } from "../services/requests";
 import { MainContainer, TitleContainer } from "./styles";
 
 export const MainPage: React.FC = () => {
-  const { setParticipations } = useContext(ParticipationContext);
+  const { participations, setParticipations, setParticipationsValue } = useContext(ParticipationContext);
 
   useEffect(() => {
     getParticipations(setParticipations);
   }, []);
+
+  useEffect(() => {
+    const participationsValues = participations.map(person => person.participation);
+
+    setParticipationsValue(participationsValues);
+  }, [participations]);
 
   return (
       <>
@@ -22,7 +28,10 @@ export const MainPage: React.FC = () => {
 
         <TitleContainer>
           <h1>Participation Graph</h1>
-          <p>Formulário de inscrição de uma pessoa em uma tabela de participação, sendo a participação visualmente representada no gráfico.</p>
+          <p>
+            Person subscription form in a participation table, 
+            where the participation is visually represented in the graph on the right.
+          </p>
         </TitleContainer>
 
         <MainContainer>
