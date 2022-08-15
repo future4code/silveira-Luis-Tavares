@@ -6,15 +6,16 @@ import { Chart } from "react-google-charts";
 export const ParticipationGraph: React.FC = () => {
   const { participations } = useContext(ParticipationContext);
 
-  const participationsArray = participations.map((part: any) => {
+  const participationsArray = participations.map(part => {
     return [
       `${part.first_name}`,
-      `${part.participation}`
+      part.participation
     ];
   });
 
   const data = [
-    ["Usuário", "Participação"],
+    ["User", "Participation"],
+    ["Empty", 100],
     ...participationsArray
   ];
 
@@ -30,7 +31,7 @@ export const ParticipationGraph: React.FC = () => {
 
       <Chart
       chartType="PieChart"
-      width="35vw"
+      width="20vw"
       height="300px"
       data={data}
       options={options}
@@ -38,4 +39,4 @@ export const ParticipationGraph: React.FC = () => {
 
     </div>
   );
-;}
+};

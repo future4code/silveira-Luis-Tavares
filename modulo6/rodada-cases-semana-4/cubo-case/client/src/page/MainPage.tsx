@@ -16,14 +16,12 @@ export const MainPage: React.FC = () => {
     getParticipations(setParticipations);
   }, []);
 
-  console.log("renderizou");
-
   return (
       <>
         <HeaderForm />
 
         <TitleContainer>
-          <h1>Gráfico de participação</h1>
+          <h1>Participation Graph</h1>
           <p>Formulário de inscrição de uma pessoa em uma tabela de participação, sendo a participação visualmente representada no gráfico.</p>
         </TitleContainer>
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { SetStateAction, useContext } from "react";
+import React, { SetStateAction } from "react";
 import { BASE_URL } from "../constants/api";
 
 import { CreateParticipation, DeleteParticipation, Participation, UpdateParticipation } from "../interfaces/participation";
@@ -36,7 +36,7 @@ export const updateParticipation = async (body: UpdateParticipation, setParticip
     try {
         await axios.put(`${BASE_URL}/update`, body);
         
-        // getParticipations();
+        getParticipations(setParticipations);
 
     } catch (error: any) {
         console.log(error);
@@ -47,7 +47,7 @@ export const deleteParticipation = async (body: DeleteParticipation, setParticip
     try {
         await axios.delete(`${BASE_URL}/delete`, { data: body });
         
-        // getParticipations();
+        getParticipations(setParticipations);
 
     } catch (error: any) {
         console.log(error);

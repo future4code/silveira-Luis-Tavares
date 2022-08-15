@@ -6,7 +6,6 @@ export const Form = styled.form`
     align-items: center;
     padding: 50px;
     background-color: #00b8e1;
-    border: 1px solid black;
 
     input {
         border: none;
